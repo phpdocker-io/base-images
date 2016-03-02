@@ -19,6 +19,7 @@ RUN sed -i "/listen = .*/c\listen = [::]:9000" /etc/php/7.0/fpm/pool.d/www.conf 
     && sed -i "/pid = .*/c\;pid = /run/php/php7.0-fpm.pid" /etc/php/7.0/fpm/php-fpm.conf \
     && sed -i "/;daemonize = .*/c\daemonize = no" /etc/php/7.0/fpm/php-fpm.conf \
     && sed -i "/error_log = .*/c\error_log = /proc/self/fd/2" /etc/php/7.0/fpm/php-fpm.conf \
+    && sed -i "/upload_max_filesize = .*/c\upload_max_filesize = 20M" /etc/php/7.0/fpm/php.ini \
     && usermod -u 1000 www-data
 
 EXPOSE 9000
