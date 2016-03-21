@@ -1,5 +1,5 @@
 PHPDocker.io base images
-########################
+========================
 
 Repository of base image for [PHPDocker.io](http://phpdocker.io) generated environments.
 
