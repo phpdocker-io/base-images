@@ -1,5 +1,5 @@
 ################################
-# PHPDocker.io memcached image #
+# PHPDocker.io Memcached image #
 ################################
 
 FROM alpine:latest
