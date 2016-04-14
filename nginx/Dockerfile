@@ -19,3 +19,5 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 # Expose HTTP/HTTPS ports
 EXPOSE 80 443
+
+ENTRYPOINT ['nginx']
