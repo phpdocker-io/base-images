@@ -1,3 +1,7 @@
+####################################
+# PHPDocker.io PHP 5.6 / FPM image #
+####################################
+
 FROM debian:jessie
 
 # Install dotdeb repo, PHP, composer and selected extensions

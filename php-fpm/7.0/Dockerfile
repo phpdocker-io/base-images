@@ -1,3 +1,7 @@
+####################################
+# PHPDocker.io PHP 7.0 / FPM image #
+####################################
+
 FROM debian:jessie
 
 # Install dotdeb repo, PHP, composer and selected extensions
