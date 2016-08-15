@@ -3,11 +3,11 @@
 # Experimental - do not use in production!! #
 #############################################
 
-FROM phpdockerio/base
+FROM ubuntu
 
-# Install Ondrej repos for Ubuntu Wily, PHP7.1, composer and selected extensions
-RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu wily main" > /etc/apt/sources.list.d/ondrej-php.list \
-    && echo "deb http://ppa.launchpad.net/ondrej/php-qa/ubuntu wily main" > /etc/apt/sources.list.d/ondrej-php-qa.list \
+# Install Ondrej repos for Ubuntu Xenial, PHP7.1, composer and selected extensions
+RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt/sources.list.d/ondrej-php.list \
+    && echo "deb http://ppa.launchpad.net/ondrej/php-qa/ubuntu xenial main" > /etc/apt/sources.list.d/ondrej-php-qa.list \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C \
     && apt-get update \
     && apt-get -y --no-install-recommends install php7.1-cli php7.1-curl \
