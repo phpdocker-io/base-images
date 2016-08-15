@@ -7,8 +7,8 @@ FROM debian:jessie
 # Fixes some weird terminal issues such as broken clear / CTRL+L
 ENV TERM=linux
 
-# Install cURL
+# Install cURL and nano
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends curl ca-certificates \
+    && apt-get install -y --no-install-recommends curl ca-certificates nano \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
