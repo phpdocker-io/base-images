@@ -1,9 +1,11 @@
-#############################################
-# PHPDocker.io PHP 7.1 / CLI image          #
-# Experimental - do not use in production!! #
-#############################################
+####################################
+# PHPDocker.io PHP 7.1 / CLI image #
+####################################
 
 FROM ubuntu
+
+# Fixes some weird terminal issues such as broken clear / CTRL+L
+ENV TERM=linux
 
 # Install Ondrej repos for Ubuntu Xenial, PHP7.1, composer and selected extensions
 RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt/sources.list.d/ondrej-php.list \
