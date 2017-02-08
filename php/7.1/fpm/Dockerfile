@@ -5,7 +5,8 @@
 FROM phpdockerio/php71-cli
 
 # Install FPM
-RUN apt-get update \
+RUN export DEBIAN_FRONTEND=noninteractive \
+    && apt-get update \
     && apt-get -y --no-install-recommends install php7.1-fpm \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
