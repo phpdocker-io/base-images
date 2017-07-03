@@ -14,8 +14,7 @@ RUN apt-get update \
 RUN usermod -u 1000 www-data
 
 # PHP-FPM packages need a nudge to make them docker-friendly
-COPY www-overrides.conf /etc/php/7.0/fpm/pool.d/z-overrides.conf
-COPY php-fpm-overrides.conf /etc/php/7.0/fpm/
+COPY overrides.conf /etc/php/7.0/fpm/pool.d/z-overrides.conf
 
 # PHP-FPM has really dirty logs, certainly not good for dockerising
 # The following startup script contains some magic to clean these up

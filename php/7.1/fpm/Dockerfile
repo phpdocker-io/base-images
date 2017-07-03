@@ -12,8 +12,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
 # PHP-FPM packages need a nudge to make them docker-friendly
-COPY www-overrides.conf /etc/php/7.1/fpm/pool.d/z-overrides.conf
-COPY php-fpm-overrides.conf /etc/php/7.1/fpm/
+COPY overrides.conf /etc/php/7.1/fpm/pool.d/z-overrides.conf
 
 # PHP-FPM has really dirty logs, certainly not good for dockerising
 # The following startup script contains some magic to clean these up
