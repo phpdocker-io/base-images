@@ -12,7 +12,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt
     && echo "deb http://ppa.launchpad.net/ondrej/php-qa/ubuntu xenial main" > /etc/apt/sources.list.d/ondrej-php-qa.list \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C \
     && apt-get update \
-    && apt-get -y --no-install-recommends install git curl ca-certificates \
+    && apt-get -y --no-install-recommends install curl ca-certificates \
         php7.2-cli php7.2-curl php-apcu php-apcu-bc \
         php7.2-json php7.2-opcache php7.2-readline php7.2-sodium php7.2-xml php7.2-zip \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
