@@ -8,7 +8,7 @@ FROM ubuntu:xenial
 ENV TERM=linux
 
 # Install Ondrej repos for Ubuntu Xenial, PHP7.1, composer and selected extensions
-RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt/sources.list.d/ondrej-php.list
+RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt/sources.list.d/ondrej-php.list \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C \
     && apt-get update \
     && apt-get -y --no-install-recommends install git curl ca-certificates \
