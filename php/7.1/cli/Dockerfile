@@ -2,14 +2,13 @@
 # PHPDocker.io PHP 7.1 / CLI image #
 ####################################
 
-FROM ubuntu
+FROM ubuntu:xenial
 
 # Fixes some weird terminal issues such as broken clear / CTRL+L
 ENV TERM=linux
 
 # Install Ondrej repos for Ubuntu Xenial, PHP7.1, composer and selected extensions
-RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt/sources.list.d/ondrej-php.list \
-    && echo "deb http://ppa.launchpad.net/ondrej/php-qa/ubuntu xenial main" > /etc/apt/sources.list.d/ondrej-php-qa.list \
+RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt/sources.list.d/ondrej-php.list
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C \
     && apt-get update \
     && apt-get -y --no-install-recommends install git curl ca-certificates \
