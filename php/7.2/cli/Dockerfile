@@ -14,7 +14,8 @@ RUN apt-get update \
     && echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main" > /etc/apt/sources.list.d/ondrej-php.list \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C \
     && apt-get update \
-    && apt-get -y --no-install-recommends install curl ca-certificates \
+    && apt-get update \
+    && apt-get -y --no-install-recommends install curl ca-certificates unzip \
         php7.2-cli php7.2-curl php-apcu php-apcu-bc \
         php7.2-json php7.2-mbstring php7.2-opcache php7.2-readline php7.2-xml php7.2-zip \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
