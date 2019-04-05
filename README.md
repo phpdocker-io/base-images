@@ -3,6 +3,8 @@ PHPDocker.io base images
 
 Repository of base images for [PHPDocker.io](http://phpdocker.io) generated environments.
 
+All images are [built daily](https://ci.auronconsulting.co.uk/teams/main/pipelines/phpdocker-base-images) in order to fetch the latest base image changes as well as available php versions. 
+
 Currently contains:
  * PHP 5.6 (debian jessie)
  * PHP 7.0 (debian jessie + dotdeb)
