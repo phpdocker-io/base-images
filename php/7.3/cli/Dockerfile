@@ -7,6 +7,9 @@ FROM ubuntu:bionic
 # Fixes some weird terminal issues such as broken clear / CTRL+L
 ENV TERM=linux
 
+# Ensure apt doesn't ask questions when installing stuff
+ENV DEBIAN_FRONTEND=noninteractive
+
 # Install Ondrej repos for Ubuntu Bionic, PHP7.3, composer and selected extensions - better selection than
 # the distro's packages
 RUN apt-get update \
