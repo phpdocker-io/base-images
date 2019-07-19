@@ -15,7 +15,7 @@ STOPSIGNAL SIGQUIT
 # PHP-FPM packages need a nudge to make them docker-friendly
 COPY overrides.conf /etc/php/7.3/fpm/pool.d/z-overrides.conf
 
-CMD ["/usr/sbin/php-fpm7.3", "-O" ]
+CMD ["/usr/sbin/php-fpm7.3", "-O", "-F" ]
 
 # Open up fcgi port
 EXPOSE 9000
