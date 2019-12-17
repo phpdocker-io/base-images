@@ -11,7 +11,8 @@ Currently contains:
  * PHP 7.1 (ubuntu xenial + ondrej ppa)
  * PHP 7.2 (ubuntu bionic + ondrej ppa)
  * PHP 7.3 (ubuntu bionic + ondrej ppa)
+ * PHP 7.4 (ubuntu bionic + ondrej ppa)
  * Mailhog (alpine based)
- * nginx (alpine based)
- * Redis (alpine based)
- * Memcached (alpine based)
+ * nginx (alpine based) DEPRECATED
+ * Redis (alpine based) DEPRECATED
+ * Memcached (alpine based) DEPRECATED
