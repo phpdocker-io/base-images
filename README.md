@@ -5,12 +5,12 @@ Repository of base images for [PHPDocker.io](http://phpdocker.io) generated envi
 
 All images are [built daily](https://ci.auronconsulting.co.uk/teams/main/pipelines/phpdocker-base-images) in order to fetch the latest base image changes as well as available php versions.
 
-Currently contains:
- * PHP 7.2 (ubuntu bionic + ondrej ppa)
- * PHP 7.3 (ubuntu bionic + ondrej ppa)
- * PHP 7.4 (ubuntu focal + ondrej ppa)
+### Currently supported PHP versions:
+ * PHP 7.2 (Ubuntu 18.04 + ondrej ppa)
+ * PHP 7.3 (Ubuntu 18.04 + ondrej ppa)
+ * PHP 7.4 (Ubuntu 20.04 + ondrej ppa)
 
-**Deprecated: past EOL**:
- * PHP 5.6 (debian jessie) - **Deprecated: past EOL**
- * PHP 7.0 (debian xenial) - **Deprecated: past EOL**
- * PHP 7.1 (ubuntu xenial + ondrej ppa) - **Deprecated: past EOL**
+### Legacy versions (reached [PHP end of life](https://www.php.net/supported-versions.php))**:
+ * PHP 5.6 (debian jessie)
+ * PHP 7.0 (Ubuntu 16.04)
+ * PHP 7.1 (Ubuntu 16.04 + ondrej ppa)
