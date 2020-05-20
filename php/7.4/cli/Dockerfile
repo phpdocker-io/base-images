@@ -2,7 +2,7 @@
 # PHPDocker.io PHP 7.4 / CLI image #
 ####################################
 
-FROM ubuntu:bionic
+FROM ubuntu:focal
 
 # Fixes some weird terminal issues such as broken clear / CTRL+L
 ENV TERM=linux
@@ -10,11 +10,11 @@ ENV TERM=linux
 # Ensure apt doesn't ask questions when installing stuff
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install Ondrej repos for Ubuntu Bionic, PHP7.4, composer and selected extensions - better selection than
+# Install Ondrej repos for Ubuntu focal, PHP7.4, composer and selected extensions - better selection than
 # the distro's packages
 RUN apt-get update \
     && apt-get install -y --no-install-recommends gnupg \
-    && echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main" > /etc/apt/sources.list.d/ondrej-php.list \
+    && echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu focal main" > /etc/apt/sources.list.d/ondrej-php.list \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C \
     && apt-get update \
     && apt-get -y --no-install-recommends install \
