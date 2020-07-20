@@ -4,7 +4,7 @@
 
 FROM phpdockerio/php74-cli
 
-ENV SWOOLE_VERSION=v4.5.1
+ENV SWOOLE_VERSION=v4.5.2
 
 # Install FPM
 RUN apt-get update \
