@@ -34,22 +34,6 @@ resources:
     stop: 1:50 AM
 
 # Docker hub repositories
-- name: php56-cli
-  type: docker-image
-  source:
-    email: {{docker-hub-email}}
-    username: {{docker-hub-user}}
-    password: {{docker-hub-password}}
-    repository: phpdockerio/php56-cli
-
-- name: php56-fpm
-  type: docker-image
-  source:
-    email: {{docker-hub-email}}
-    username: {{docker-hub-user}}
-    password: {{docker-hub-password}}
-    repository: phpdockerio/php56-fpm
-
 - name: php7-cli
   type: docker-image
   source:
@@ -139,20 +123,6 @@ resources:
     repository: phpdockerio/php74-swoole
 
 jobs:
-- name: php 5.6
-  public: true
-  plan:
-  - get: base-images
-    trigger: true
-  - get: time-slot-1
-    trigger: true
-  - put: php56-cli
-    params:
-        build: base-images/php/5.6/cli
-  - put: php56-fpm
-    params:
-        build: base-images/php/5.6/fpm
-
 - name: php 7.0
   public: true
   plan:
@@ -172,7 +142,7 @@ jobs:
   plan:
   - get: base-images
     trigger: true
-  - get: time-slot-2
+  - get: time-slot-1
     trigger: true
   - put: php71-cli
     params:
@@ -200,7 +170,7 @@ jobs:
   plan:
   - get: base-images
     trigger: true
-  - get: time-slot-3
+  - get: time-slot-2
     trigger: true
   - put: php73-cli
     params:
@@ -222,6 +192,9 @@ jobs:
   - put: php74-fpm
     params:
         build: base-images/php/7.4/fpm
+  - put: php74-swoole
+    params:
+        build: base-images/php/7.4/swoole
 
 - name: php 7.4 swoole
   public: true
