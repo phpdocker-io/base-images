@@ -16,7 +16,7 @@ Notes:
 * Old images are kept in docker hub in the interest of enabling legacy apps to run
 
 
-| PHP version  | CLI image | FPM image | Source | Supported / Daily builds? | Daily builds? |
+| PHP version  | CLI image | FPM image | Source | Supported | Daily builds? |
 | ------------ | --------- |---------- |------- |----------- |-------------- |
 | 7.4 (swoole) | `phpdockerio/php74-swoole` | n/a | Swoole sources | ✔ | ✔ |
 | 7.4 | `phpdockerio/php74-cli` | `phpdockerio/php74-cli` | Ubuntu 20.04 + Ondřej Surý ppa | ✔ | ✔ |
