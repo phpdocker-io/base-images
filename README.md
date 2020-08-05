@@ -7,14 +7,13 @@ Images are [built daily](https://ci.auronconsulting.co.uk/teams/main/pipelines/p
 
 ### Available images:
 
-Notes:
+**Notes:**
 
 * Unsupported versions are past PHP EOL (End of Life)
 * Daily builds are turned off for versions that run on an OS base that's also EOL (for instance, Debian Jessie)
 * Daily builds are kept for PHP versions that have reached EOL but the base OS has not - the base OS still receives security updates, including the PHP runtime.
 * In general, do not use any unsupported images in a production environment, regardless of whether daily builds are still enabled
 * Old images are kept in docker hub in the interest of enabling legacy apps to run
-
 
 | PHP version  | CLI image | FPM image | Source | Supported | Daily builds? |
 | ------------ | --------- |---------- |------- |----------- |-------------- |
