@@ -27,12 +27,6 @@ resources:
     start: 12:50 AM
     stop: 1:10 AM
 
-- name: time-slot-4
-  type: time
-  source:
-    start: 1:15 AM
-    stop: 1:50 AM
-
 # Docker hub repositories
 - name: php7-cli
   type: docker-image
