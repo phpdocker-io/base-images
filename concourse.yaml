@@ -195,14 +195,3 @@ jobs:
   - put: php74-swoole
     params:
         build: base-images/php/7.4/swoole
-
-- name: php 7.4 swoole
-  public: true
-  plan:
-  - get: base-images
-    trigger: true
-  - get: time-slot-4
-    trigger: true
-  - put: php74-swoole
-    params:
-      build: base-images/php/7.4/swoole
