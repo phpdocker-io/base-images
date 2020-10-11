@@ -25,9 +25,10 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt
         php7.1-readline \
         php7.1-xml \
         php7.1-zip \
-    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* ~/.composer
+
+COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 CMD ["php", "-a"]
 
