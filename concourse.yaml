@@ -116,6 +116,22 @@ resources:
       password: {{docker-hub-password}}
       repository: phpdockerio/php74-swoole
 
+  - name: php80-cli
+    type: docker-image
+    source:
+      email: {{docker-hub-email}}
+      username: {{docker-hub-user}}
+      password: {{docker-hub-password}}
+      repository: phpdockerio/php80-cli
+
+  - name: php80-fpm
+    type: docker-image
+    source:
+      email: {{docker-hub-email}}
+      username: {{docker-hub-user}}
+      password: {{docker-hub-password}}
+      repository: phpdockerio/php80-fpm
+
 jobs:
   - name: php 7.0
     public: true
@@ -189,3 +205,17 @@ jobs:
       - put: php74-swoole
         params:
           build: base-images/php/7.4/swoole
+
+  - name: php 8.0
+    public: true
+    plan:
+      - get: base-images
+        trigger: true
+      - get: time-slot-3
+        trigger: true
+      - put: php80-cli
+        params:
+          build: base-images/php/8.0/cli
+      - put: php80-fpm
+        params:
+          build: base-images/php/8.0/fpm
