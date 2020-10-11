@@ -21,8 +21,8 @@ RUN apt-get update \
         ca-certificates \
         curl \
         unzip \
-        php-apcu \
         php-apcu-bc \
+        php7.4-apcu \
         php7.4-cli \
         php7.4-curl \
         php7.4-json \
