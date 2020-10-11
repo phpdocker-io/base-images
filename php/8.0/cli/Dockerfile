@@ -21,7 +21,7 @@ RUN apt-get update \
         ca-certificates \
         curl \
         unzip \
-        php-apcu-bc \
+#        php-apcu-bc \
         php8.0-apcu \
         php8.0-cli \
         php8.0-curl \
@@ -30,11 +30,10 @@ RUN apt-get update \
         php8.0-readline \
         php8.0-xml \
         php8.0-zip \
-    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && composer global require hirak/prestissimo \
-    && composer clear-cache \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* ~/.composer
+
+COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 CMD ["php", "-a"]
 
