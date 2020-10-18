@@ -19,8 +19,8 @@ RUN apt-get update \
         curl \
         ca-certificates \
         unzip \
-        php-apcu-bc \
         php7.2-apcu \
+        php7.2-apcu-bc \
         php7.2-cli \
         php7.2-curl \
         php7.2-json \

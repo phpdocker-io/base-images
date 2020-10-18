@@ -14,9 +14,9 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt
     && apt-get -y --no-install-recommends install \
         curl \
         ca-certificates \
-        php-sodium \
-        php-apcu-bc \
+        php7.1-sodium \
         php7.1-apcu \
+        php7.1-apcu-bc \
         php7.1-cli \
         php7.1-curl \
         php7.1-json \
