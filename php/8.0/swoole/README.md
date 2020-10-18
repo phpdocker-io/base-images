@@ -1,7 +1,7 @@
-PHPDocker.io - PHP 7.4 / Swoole container image
+PHPDocker.io - PHP 8.0 / Swoole container image
 ================================================
 
-Ubuntu 18.04 PHP 7.4 Swoole 4.5.x container image for [PHPDocker.io](http://phpdocker.io) projects. Packages are provided by [Ondřej Surý](https://deb.sury.org/) and built from source (Swoole).
+Ubuntu 18.04 PHP 8.0 Swoole 4.5.x container image for [PHPDocker.io](http://phpdocker.io) projects. Packages are provided by [Ondřej Surý](https://deb.sury.org/) and built from source (Swoole).
 
 Usage
 =====
