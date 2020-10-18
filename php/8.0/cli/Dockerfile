@@ -21,7 +21,6 @@ RUN apt-get update \
         ca-certificates \
         curl \
         unzip \
-#        php-apcu-bc \
         php8.0-apcu \
         php8.0-cli \
         php8.0-curl \
