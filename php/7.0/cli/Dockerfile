@@ -20,9 +20,10 @@ RUN apt-get update \
         php-readline \
         php-xml \
         php-zip \
-    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* ~/.composer
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 CMD ["php", "-a"]
 
