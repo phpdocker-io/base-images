@@ -141,7 +141,8 @@ resources:
       repository: phpdockerio/php80-swoole
 
 jobs:
-  - name: php 7.0
+  - name: php-7.0
+    old_name: php 7.0
     public: true
     plan:
       - get: base-images
@@ -155,7 +156,8 @@ jobs:
         params:
           build: base-images/php/7.0/fpm
 
-  - name: php 7.1
+  - name: php-7.1
+    old_name: php 7.1
     public: true
     plan:
       - get: base-images
@@ -169,7 +171,8 @@ jobs:
         params:
           build: base-images/php/7.1/fpm
 
-  - name: php 7.2
+  - name: php-7.2
+    old_name: php 7.2
     public: true
     plan:
       - get: base-images
@@ -183,7 +186,8 @@ jobs:
         params:
           build: base-images/php/7.2/fpm
 
-  - name: php 7.3
+  - name: php-7.3
+    old_name: php 7.3
     public: true
     plan:
       - get: base-images
@@ -197,7 +201,8 @@ jobs:
         params:
           build: base-images/php/7.3/fpm
 
-  - name: php 7.4
+  - name: php-7.4
+    old_name: php 7.4
     public: true
     plan:
       - get: base-images
@@ -214,7 +219,8 @@ jobs:
         params:
           build: base-images/php/7.4/swoole
 
-  - name: php 8.0
+  - name: php-8.0
+    old_name: php 8.0
     public: true
     plan:
       - get: base-images
