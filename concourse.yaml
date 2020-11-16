@@ -1,4 +1,15 @@
 version: 2.1
+resource_types:
+  - name: docker-hub
+    type: docker-image
+    privileged: true
+    source:
+      repository: concourse/docker-image-resource
+    defaults:
+      email: {{docker-hub-email}}
+      username: {{docker-hub-user}}
+      password: {{docker-hub-password}}
+
 resources:
   # Repository
   - name: base-images
@@ -29,115 +40,73 @@ resources:
 
   # Docker hub repositories
   - name: php7-cli
-    type: docker-image
+    type: docker-hub
     source:
-      email: {{docker-hub-email}}
-      username: {{docker-hub-user}}
-      password: {{docker-hub-password}}
       repository: phpdockerio/php7-cli
 
   - name: php7-fpm
-    type: docker-image
+    type: docker-hub
     source:
-      email: {{docker-hub-email}}
-      username: {{docker-hub-user}}
-      password: {{docker-hub-password}}
       repository: phpdockerio/php7-fpm
 
   - name: php71-cli
-    type: docker-image
+    type: docker-hub
     source:
-      email: {{docker-hub-email}}
-      username: {{docker-hub-user}}
-      password: {{docker-hub-password}}
       repository: phpdockerio/php71-cli
 
   - name: php71-fpm
-    type: docker-image
+    type: docker-hub
     source:
-      email: {{docker-hub-email}}
-      username: {{docker-hub-user}}
-      password: {{docker-hub-password}}
       repository: phpdockerio/php71-fpm
 
   - name: php72-cli
-    type: docker-image
+    type: docker-hub
     source:
-      email: {{docker-hub-email}}
-      username: {{docker-hub-user}}
-      password: {{docker-hub-password}}
       repository: phpdockerio/php72-cli
 
   - name: php72-fpm
-    type: docker-image
+    type: docker-hub
     source:
-      email: {{docker-hub-email}}
-      username: {{docker-hub-user}}
-      password: {{docker-hub-password}}
       repository: phpdockerio/php72-fpm
 
   - name: php73-cli
-    type: docker-image
+    type: docker-hub
     source:
-      email: {{docker-hub-email}}
-      username: {{docker-hub-user}}
-      password: {{docker-hub-password}}
       repository: phpdockerio/php73-cli
 
   - name: php73-fpm
-    type: docker-image
+    type: docker-hub
     source:
-      email: {{docker-hub-email}}
-      username: {{docker-hub-user}}
-      password: {{docker-hub-password}}
       repository: phpdockerio/php73-fpm
 
   - name: php74-cli
-    type: docker-image
+    type: docker-hub
     source:
-      email: {{docker-hub-email}}
-      username: {{docker-hub-user}}
-      password: {{docker-hub-password}}
       repository: phpdockerio/php74-cli
 
   - name: php74-fpm
-    type: docker-image
+    type: docker-hub
     source:
-      email: {{docker-hub-email}}
-      username: {{docker-hub-user}}
-      password: {{docker-hub-password}}
       repository: phpdockerio/php74-fpm
 
   - name: php74-swoole
-    type: docker-image
+    type: docker-hub
     source:
-      email: {{docker-hub-email}}
-      username: {{docker-hub-user}}
-      password: {{docker-hub-password}}
       repository: phpdockerio/php74-swoole
 
   - name: php80-cli
-    type: docker-image
+    type: docker-hub
     source:
-      email: {{docker-hub-email}}
-      username: {{docker-hub-user}}
-      password: {{docker-hub-password}}
       repository: phpdockerio/php80-cli
 
   - name: php80-fpm
-    type: docker-image
+    type: docker-hub
     source:
-      email: {{docker-hub-email}}
-      username: {{docker-hub-user}}
-      password: {{docker-hub-password}}
       repository: phpdockerio/php80-fpm
 
   - name: php80-swoole
-    type: docker-image
+    type: docker-hub
     source:
-      email: {{docker-hub-email}}
-      username: {{docker-hub-user}}
-      password: {{docker-hub-password}}
       repository: phpdockerio/php80-swoole
 
 jobs:
