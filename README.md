@@ -61,7 +61,7 @@ COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
 * In general, do not use any unsupported images in a production environment, regardless of whether daily builds are still enabled
 * Old images are kept in docker hub in the interest of enabling legacy apps to run
 * Also, old images could potentially be deleted by Docker Hub if they go unused for a certain period of time - if this happens, they won't be restored and you need to upgrade.
-* Ondřej Surý is PHP's package maintainer in Debian. His Ubuntu PPA PPA allows us to have more up to date packages beyond those provided by the base image OS.
+* Ondřej Surý is PHP's package maintainer in Debian. His Ubuntu PPA allows us to have more up to date packages beyond those provided by the base image OS.
 
 | PHP version  | CLI image | FPM image | Source | Supported | Daily builds? |
 | ------------ | --------- |---------- |------- |----------- |-------------- |
