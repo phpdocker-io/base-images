@@ -71,6 +71,6 @@ COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
 | 7.4 | `phpdockerio/php74-cli` | `phpdockerio/php74-fpm` | Ubuntu 20.04 + Ondřej Surý ppa | ✔ | ✔ |
 | 7.3 | `phpdockerio/php73-cli` | `phpdockerio/php73-fpm` | Ubuntu 18.04 + Ondřej Surý ppa | ✔ | ✔ |
 | 7.2 | `phpdockerio/php72-cli` | `phpdockerio/php72-fpm` | Ubuntu 18.04 + Ondřej Surý ppa | ❌ | ✔ |
-| 7.1 | `phpdockerio/php71-cli` | `phpdockerio/php71-fpm` | Ubuntu 16.04 + Ondřej Surý ppa | ❌ | ✔ |
-| 7.0 | `phpdockerio/php70-cli` | `phpdockerio/php70-fpm` | Ubuntu 16.04 | ❌ | ✔ |
+| 7.1 | `phpdockerio/php71-cli` | `phpdockerio/php71-fpm` | Ubuntu 16.04 + Ondřej Surý ppa | ❌ | ❌ |
+| 7.0 | `phpdockerio/php70-cli` | `phpdockerio/php70-fpm` | Ubuntu 16.04 | ❌ | ❌ |
 | 5.6 | `phpdockerio/php56-cli` | `phpdockerio/php56-fpm` | Debian Jessie | ❌ | ❌ |

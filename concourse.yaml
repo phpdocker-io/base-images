@@ -38,33 +38,7 @@ resources:
       start: 12:50 AM
       stop: 1:10 AM
 
-  - name: time-slot-4
-    type: time
-    source:
-      start: 1:15 AM
-      stop: 1:45 AM
-
   # Docker hub repositories
-  - name: php7-cli
-    type: docker-hub
-    source:
-      repository: phpdockerio/php7-cli
-
-  - name: php7-fpm
-    type: docker-hub
-    source:
-      repository: phpdockerio/php7-fpm
-
-  - name: php71-cli
-    type: docker-hub
-    source:
-      repository: phpdockerio/php71-cli
-
-  - name: php71-fpm
-    type: docker-hub
-    source:
-      repository: phpdockerio/php71-fpm
-
   - name: php72-cli
     type: docker-hub
     source:
@@ -116,43 +90,13 @@ resources:
       repository: phpdockerio/php80-swoole
 
 jobs:
-  - name: php-7.0
-    old_name: php 7.0
-    public: true
-    plan:
-      - get: base-images
-        trigger: true
-      - get: time-slot-1
-        trigger: true
-      - put: php7-cli
-        params:
-          build: base-images/php/7.0/cli
-      - put: php7-fpm
-        params:
-          build: base-images/php/7.0/fpm
-
-  - name: php-7.1
-    old_name: php 7.1
-    public: true
-    plan:
-      - get: base-images
-        trigger: true
-      - get: time-slot-1
-        trigger: true
-      - put: php71-cli
-        params:
-          build: base-images/php/7.1/cli
-      - put: php71-fpm
-        params:
-          build: base-images/php/7.1/fpm
-
   - name: php-7.2
     old_name: php 7.2
     public: true
     plan:
       - get: base-images
         trigger: true
-      - get: time-slot-2
+      - get: time-slot-3
         trigger: true
       - put: php72-cli
         params:
@@ -167,7 +111,7 @@ jobs:
     plan:
       - get: base-images
         trigger: true
-      - get: time-slot-2
+      - get: time-slot-3
         trigger: true
       - put: php73-cli
         params:
@@ -182,7 +126,7 @@ jobs:
     plan:
       - get: base-images
         trigger: true
-      - get: time-slot-3
+      - get: time-slot-2
         trigger: true
       - put: php74-cli
         params:
@@ -200,7 +144,7 @@ jobs:
     plan:
       - get: base-images
         trigger: true
-      - get: time-slot-4
+      - get: time-slot-1
         trigger: true
       - put: php80-cli
         params:
