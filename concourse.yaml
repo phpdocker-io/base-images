@@ -38,6 +38,12 @@ resources:
       start: 12:50 AM
       stop: 1:10 AM
 
+  - name: time-slot-4
+    type: time
+    source:
+      start: 12:50 AM
+      stop: 1:10 AM
+
   # Docker hub repositories
   - name: php72-cli
     type: docker-hub
@@ -91,7 +97,6 @@ resources:
 
 jobs:
   - name: php-7.2
-    old_name: php 7.2
     public: true
     plan:
       - get: base-images
@@ -106,7 +111,6 @@ jobs:
           build: base-images/php/7.2/fpm
 
   - name: php-7.3
-    old_name: php 7.3
     public: true
     plan:
       - get: base-images
@@ -121,7 +125,6 @@ jobs:
           build: base-images/php/7.3/fpm
 
   - name: php-7.4
-    old_name: php 7.4
     public: true
     plan:
       - get: base-images
@@ -139,7 +142,6 @@ jobs:
           build: base-images/php/7.4/swoole
 
   - name: php-8.0
-    old_name: php 8.0
     public: true
     plan:
       - get: base-images
@@ -155,3 +157,14 @@ jobs:
       - put: php80-swoole
         params:
           build: base-images/php/8.0/swoole
+
+  - name: nginx-pagespeed
+    public: true
+    plan:
+      - get: base-images
+        trigger: true
+      - get: time-slot-4
+        trigger: true
+      - put: nginx-pagespeed
+        params:
+          build: base-images/nginx-pagespeed
