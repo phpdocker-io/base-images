@@ -1,8 +1,26 @@
+#####################################################################################################################
+# nginx with PageSpeed                                                                                              #
+#                                                                                                                   #
+# The official image (https://hub.docker.com/r/pagespeed/nginx-pagespeed) is abandoned and of course it runs a very #
+# old and unpatched version of both nginx, its base OS and the pagespeed module itself.                             #
+#                                                                                                                   #
+# This image uses the official installer script to install it into Ubuntu Focal (debian as base results in fatter   #
+# image sizes) then proceeds to compile nginx with pagespeed support using the same flags Ubuntu Focal's own nginx  #
+# uses.                                                                                                             #
+#                                                                                                                   #
+# The user, entrypoint & folder setup have been lifted straight from nginx's debian base image Dockerfile.          #
+#####################################################################################################################
+
 FROM ubuntu:focal
 
 ENV DEBIAN_FRONTEND=noninteractive
+ARG NGINX_VERSION=latest
 
 COPY install-pagespeed.sh /tmp/install-pagespeed.sh
+
+# Build nginx with pagespeed from source with the same build flags Ubuntu uses
+# Unfortunately the build installer does not support alpine, so these images will be somewhat fatter than
+# they'd be otherwise
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         ca-certificates \
@@ -11,7 +29,7 @@ RUN apt-get update \
         libssl-dev \
         sudo \
         build-essential \
-    && /tmp/install-pagespeed.sh -y --nginx-version latest \
+    && /tmp/install-pagespeed.sh -y --nginx-version $(NGINX_VERSION) \
         -a "--prefix=/etc/nginx \
         --sbin-path=/usr/sbin/nginx \
         --modules-path=/usr/lib/nginx/modules \
@@ -67,6 +85,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* ~/.composer \
     && rm /root/* -rf
 
+# Set up nginx environment: user, logs and various folders
 RUN  addgroup --system --gid 101 nginx \
     && adduser --system --disabled-login --ingroup nginx --no-create-home --home /nonexistent --gecos "nginx user" --shell /bin/false --uid 101 nginx \
     && mkdir -p /var/log/nginx /var/cache/nginx/ \
@@ -77,6 +96,7 @@ RUN  addgroup --system --gid 101 nginx \
     && chmod 777 /var/run \
     && mkdir -p /docker-entrypoint.d
 
+# Set up entrypoint (same scripts as official nginx image)
 COPY docker-entrypoint.sh /
 COPY 10-listen-on-ipv6-by-default.sh /docker-entrypoint.d
 COPY 20-envsubst-on-templates.sh /docker-entrypoint.d
