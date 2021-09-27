@@ -14,6 +14,11 @@
 FROM ubuntu:focal
 
 ENV DEBIAN_FRONTEND=noninteractive
+
+# Options: latest-stable, latest-beta, a version number
+ARG NGINX_PAGESPEED_VERSION=latest-stable
+
+# Options: latest (nginx mainline) or a version number from here: http://nginx.org/download/
 ARG NGINX_VERSION=latest
 
 COPY install-pagespeed.sh /tmp/install-pagespeed.sh
@@ -29,7 +34,9 @@ RUN apt-get update \
         libssl-dev \
         sudo \
         build-essential \
-    && /tmp/install-pagespeed.sh -y --nginx-version $(NGINX_VERSION) \
+    && /tmp/install-pagespeed.sh -y \
+        --ngx-pagespeed-version ${NGINX_PAGESPEED_VERSION} \
+        --nginx-version ${NGINX_VERSION} \
         -a "--prefix=/etc/nginx \
         --sbin-path=/usr/sbin/nginx \
         --modules-path=/usr/lib/nginx/modules \
@@ -82,15 +89,13 @@ RUN apt-get update \
         wget \
         uuid-dev \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* ~/.composer \
-    && rm /root/* -rf
+    && rm -rf /root/* /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* ~/.composer
 
 # Set up nginx environment: user, logs and various folders
 RUN  addgroup --system --gid 101 nginx \
     && adduser --system --disabled-login --ingroup nginx --no-create-home --home /nonexistent --gecos "nginx user" --shell /bin/false --uid 101 nginx \
-    && mkdir -p /var/log/nginx /var/cache/nginx/ \
-    && chown nginx:nginx /var/cache/nginx \
-    && chown nginx:nginx /var/log/nginx \
+    && mkdir -p /var/log/nginx /var/cache/nginx/ /var/ngx_pagespeed_cache \
+    && chown nginx:nginx /var/cache/nginx /var/log/nginx /var/ngx_pagespeed_cache\
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log \
     && chmod 777 /var/run \
