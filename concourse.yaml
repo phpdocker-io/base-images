@@ -95,6 +95,11 @@ resources:
     source:
       repository: phpdockerio/php80-swoole
 
+  - name: nginx-pagespeed
+    type: docker-hub
+    source:
+      repository: phpdockerio/nginx-pagespeed
+
 jobs:
   - name: php-7.2
     public: true
