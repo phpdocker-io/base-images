@@ -85,6 +85,7 @@ RUN apt-get update \
         sudo \
         build-essential \
         zlib1g-dev \
+        libpcre3-dev \
         unzip \
         wget \
         uuid-dev \
