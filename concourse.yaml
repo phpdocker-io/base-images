@@ -11,13 +11,52 @@ resource_types:
       password: {{docker-hub-password}}
 
 resources:
-  # Repository
-  - name: base-images
+  # Code repository - one entry per buildable to avoid building everything when we change anything
+  - name: php-7.2-code
     type: git
     check_every: 5m
     source:
       uri: https://github.com/phpdocker-io/base-images.git
       branch: master
+      paths:
+        - php/7.2/*/**
+
+  - name: php-7.3-code
+    type: git
+    check_every: 5m
+    source:
+      uri: https://github.com/phpdocker-io/base-images.git
+      branch: master
+      paths:
+        - php/7.3/*/**
+
+  - name: php-7.4-code
+    type: git
+    check_every: 5m
+    source:
+      uri: https://github.com/phpdocker-io/base-images.git
+      branch: master
+      paths:
+        - php/7.4/*/**
+
+  - name: php-8.0-code
+    type: git
+    check_every: 5m
+    source:
+      uri: https://github.com/phpdocker-io/base-images.git
+      branch: master
+      paths:
+        - php/8.0/*/**
+
+  - name: nginx-pagespeed-code
+    type: git
+    check_every: 5m
+    source:
+      uri: https://github.com/phpdocker-io/base-images.git
+      branch: master
+      paths:
+        - nginx-pagespeed/*/**
+
 
   # Periodic triggers to get daily builds
   - name: time-slot-1
@@ -104,7 +143,7 @@ jobs:
   - name: php-7.2
     public: true
     plan:
-      - get: base-images
+      - get: php-7.2-code
         trigger: true
       - get: time-slot-3
         trigger: true
@@ -118,7 +157,7 @@ jobs:
   - name: php-7.3
     public: true
     plan:
-      - get: base-images
+      - get: php-7.3-code
         trigger: true
       - get: time-slot-3
         trigger: true
@@ -132,7 +171,7 @@ jobs:
   - name: php-7.4
     public: true
     plan:
-      - get: base-images
+      - get: php-7.4-code
         trigger: true
       - get: time-slot-2
         trigger: true
@@ -149,7 +188,7 @@ jobs:
   - name: php-8.0
     public: true
     plan:
-      - get: base-images
+      - get: php-8.0-code
         trigger: true
       - get: time-slot-1
         trigger: true
@@ -166,7 +205,7 @@ jobs:
   - name: nginx-pagespeed
     public: true
     plan:
-      - get: base-images
+      - get: nginx-pagespeed-code
         trigger: true
       - get: time-slot-4
         trigger: true
