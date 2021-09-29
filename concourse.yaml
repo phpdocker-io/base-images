@@ -55,7 +55,7 @@ resources:
       uri: https://github.com/phpdocker-io/base-images.git
       branch: master
       paths:
-        - nginx-pagespeed/*/**
+        - nginx-pagespeed/*
 
 
   # Periodic triggers to get daily builds
@@ -149,10 +149,10 @@ jobs:
         trigger: true
       - put: php72-cli
         params:
-          build: base-images/php/7.2/cli
+          build: php-7.2-code/php/7.2/cli
       - put: php72-fpm
         params:
-          build: base-images/php/7.2/fpm
+          build: php-7.2-code/php/7.2/fpm
 
   - name: php-7.3
     public: true
@@ -163,10 +163,10 @@ jobs:
         trigger: true
       - put: php73-cli
         params:
-          build: base-images/php/7.3/cli
+          build: php-7.3-code/php/7.3/cli
       - put: php73-fpm
         params:
-          build: base-images/php/7.3/fpm
+          build: php-7.3-code/php/7.3/fpm
 
   - name: php-7.4
     public: true
@@ -177,13 +177,13 @@ jobs:
         trigger: true
       - put: php74-cli
         params:
-          build: base-images/php/7.4/cli
+          build: php-7.4-code/php/7.4/cli
       - put: php74-fpm
         params:
-          build: base-images/php/7.4/fpm
+          build: php-7.4-code/php/7.4/fpm
       - put: php74-swoole
         params:
-          build: base-images/php/7.4/swoole
+          build: php-7.4-code/php/7.4/swoole
 
   - name: php-8.0
     public: true
@@ -194,13 +194,13 @@ jobs:
         trigger: true
       - put: php80-cli
         params:
-          build: base-images/php/8.0/cli
+          build: php-8.0-code/php/8.0/cli
       - put: php80-fpm
         params:
-          build: base-images/php/8.0/fpm
+          build: php-8.0-code/php/8.0/fpm
       - put: php80-swoole
         params:
-          build: base-images/php/8.0/swoole
+          build: php-8.0-code/php/8.0/swoole
 
   - name: nginx-pagespeed
     public: true
@@ -211,4 +211,4 @@ jobs:
         trigger: true
       - put: nginx-pagespeed
         params:
-          build: base-images/nginx-pagespeed
+          build: nginx-pagespeed-code/nginx-pagespeed
