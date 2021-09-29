@@ -1,10 +1,14 @@
-PHPDocker.io base images
-========================
+# PHPDocker.io base images
+
 
 Repository of base images for [PHPDocker.io](http://phpdocker.io) generated environments.
 
 Images are [built daily](https://ci.auronconsulting.co.uk/teams/main/pipelines/phpdocker-base-images) in order to fetch the latest base image changes as well as available php versions.
 
+## NGINX with PageSpeed
+More info on its own [readme](nginx-pagespeed/README.md)
+
+## PHP
 ### OS Base images & PHP Package Sources
 
 All images use an Ubuntu LTS release as base image, except for PHP5.6 which uses Debian Jessie. For each of these

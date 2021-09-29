@@ -1,11 +1,15 @@
-# PHPDocker.io - nginx with pagespeed container image
+# PHPDocker.io - nginx with PageSpeed container image
 
-This is a container image for the newest available mainline version of nginx and its pagespeed module.
+This is a container image for the newest available mainline version of nginx and its PageSpeed module. This image is [built daily](https://ci.auronconsulting.co.uk/teams/main/pipelines/phpdocker-base-images/jobs/nginx-pagespeed) to ensure we always have the newest available versions for both.
 
-Documentation of pagespeed specific config: [https://www.modpagespeed.com/doc/configuration](https://www.modpagespeed.com/doc/configuration)
+The official image [https://hub.docker.com/r/pagespeed/nginx-pagespeed](https://hub.docker.com/r/pagespeed/nginx-pagespeed) is abandoned and of course it runs a very old and unpatched version of both nginx, its base OS and the PageSpeed module itself.
 
-The official image [https://hub.docker.com/r/pagespeed/nginx-pagespeed](https://hub.docker.com/r/pagespeed/nginx-pagespeed) is abandoned and of course it runs a very old and unpatched version of both nginx, its base OS and the pagespeed module itself.
+This image uses the official installer script to install it into Ubuntu Focal (debian as base results in fatter image sizes) then proceeds to compile nginx with PageSpeed support using the same flags Ubuntu Focal's own nginx uses. It peruses nginx's official image's entrypoint and base config.
 
-This image uses the official installer script to install it into Ubuntu Focal (debian as base results in fatter image sizes) then proceeds to compile nginx with pagespeed support using the same flags Ubuntu Focal's own nginx uses.
+## PageSpeed configuration
 
-The user, entrypoint & folder setup have been lifted straight from nginx's debian base image Dockerfile.
+Documentation of PageSpeed specific config: [https://www.modpagespeed.com/doc/configuration](https://www.modpagespeed.com/doc/configuration)
+
+## Adding your own config to nginx
+
+Make sure you add your .conf files to `/etc/nginx/conf.d/`. They'll be automagically picked up.
