@@ -112,6 +112,9 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
+# Disable installation of nginx packages on the system
+COPY apt-preferences-disable-nginx /etc/apt/preferences.d/disable-nginx
+
 EXPOSE 80
 
 STOPSIGNAL SIGQUIT
