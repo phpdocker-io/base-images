@@ -16,6 +16,6 @@ Make sure you add your .conf files to `/etc/nginx/conf.d/`. They'll be automagic
 
 ## System NGINX packages
 
-The version of NGINX on this image is compiled from the latest mainline sources. Therefore, all of the base OS packages available are incompatible with it and will cause issues if installed. Therefore, all of the system's apt packages for nginx have been disabled for installation - you won't be able to do `apt install nginx` for instance.
+The version of NGINX on this image is compiled from the latest mainline sources. Therefore, all of the base OS packages available are incompatible with it and will cause issues if installed. To avoid confusion, all of the system's apt packages for nginx have been disabled for installation - you won't be able to do `apt install nginx` for instance.
 
 NGINX has been compiled with all modules Ubuntu includes by default - see the [Dockerfile](Dockerfile) for the full list. Please open a PR or an issue if there's a module that you'd like to install that isn't there.
