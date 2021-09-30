@@ -6,6 +6,10 @@ The official image [https://hub.docker.com/r/pagespeed/nginx-pagespeed](https://
 
 This image uses the official installer script to install it into Ubuntu Focal (debian as base results in fatter image sizes) then proceeds to compile NGINX with PageSpeed support using the same flags Ubuntu Focal's own NGINX uses. It peruses nginx's official image's entrypoint and base config.
 
+## Contributing
+
+Any issues or PRs please open them here: [https://github.com/phpdocker-io/base-images](https://github.com/phpdocker-io/base-images)
+
 ## PageSpeed configuration
 
 Documentation of PageSpeed specific config: [https://www.modpagespeed.com/doc/configuration](https://www.modpagespeed.com/doc/configuration)
