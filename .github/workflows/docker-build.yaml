@@ -47,10 +47,10 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ${{ matrix.folder }}
-          platforms: ${{ join(matrix.arch, ',') }}
+          platforms: ${{ matrix.arch }}
           push: true
           tags: phpdockerio/${{ matrix.targets.primary && format('{0}-{1}', matrix.name, matrix.targets.primary) || matrix.name }}:latest
-          target: ${{ matrix.target.primary }}
+          target: ${{ matrix.targets.primary }}
           cache-from: type=registry,ref=phpdockerio/${{ matrix.targets.primary && format('{0}-{1}', matrix.name, matrix.targets.primary) || matrix.name }}:buildcache
           cache-to: type=registry,ref=phpdockerio/${{ matrix.targets.primary && format('{0}-{1}', matrix.name, matrix.targets.primary) || matrix.name }}:buildcache,mode=max
 
@@ -62,6 +62,6 @@ jobs:
           platforms: ${{ join(matrix.arch, ',') }}
           push: true
           tags: phpdockerio/${{ format('{0}-{1}', matrix.name, matrix.targets.secondary) }}:latest
-          target: ${{ matrix.target.secondary }}
+          target: ${{ matrix.targets.secondary }}
           cache-from: type=registry,ref=phpdockerio/${{ format('{0}-{1}', matrix.name, matrix.targets.secondary) }}:buildcache
           cache-to: type=registry,ref=phpdockerio/${{ format('{0}-{1}', matrix.name, matrix.targets.secondary) }}:buildcache,mode=max
