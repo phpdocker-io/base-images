@@ -1,8 +1,8 @@
-####################################
-# PHPDocker.io PHP 7.2 / CLI image #
-####################################
+##########################################
+# PHPDocker.io PHP 7.2 / CLI & FPM image #
+##########################################
 
-FROM ubuntu:bionic
+FROM ubuntu:bionic AS cli
 
 # Fixes some weird terminal issues such as broken clear / CTRL+L
 ENV TERM=linux
@@ -40,3 +40,23 @@ CMD ["php", "-a"]
 # you can /bin/bash into, override CMD with the following - bear in mind that this will make docker-compose stop
 # slow on such a container, docker-compose kill might do if you're in a hurry
 # CMD ["tail", "-f", "/dev/null"]
+
+FROM cli AS fpm
+
+# Install FPM
+RUN export DEBIAN_FRONTEND=noninteractive \
+    && apt-get update \
+    && apt-get -y --no-install-recommends install php7.2-fpm \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+
+# PHP-FPM packages need a nudge to make them docker-friendly
+COPY overrides.conf /etc/php/7.2/fpm/pool.d/z-overrides.conf
+
+# PHP-FPM has really dirty logs, certainly not good for dockerising
+# The following startup script contains some magic to clean these up
+COPY php-fpm-startup /usr/bin/php-fpm
+CMD /usr/bin/php-fpm
+
+# Open up fcgi port
+EXPOSE 9000

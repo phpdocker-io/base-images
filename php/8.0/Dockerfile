@@ -1,8 +1,8 @@
-####################################
-# PHPDocker.io PHP 8.0 / CLI image #
-####################################
+##################################################
+# PHPDocker.io PHP 8.0 / CLI, FPM & Swoole image #
+##################################################
 
-FROM ubuntu:focal
+FROM ubuntu:focal AS cli
 
 # Fixes some weird terminal issues such as broken clear / CTRL+L
 ENV TERM=linux
@@ -40,3 +40,29 @@ CMD ["php", "-a"]
 # you can /bin/bash into, override CMD with the following - bear in mind that this will make docker-compose stop
 # slow on such a container, docker-compose kill might do if you're in a hurry
 # CMD ["tail", "-f", "/dev/null"]
+
+FROM cli AS fpm
+
+# Install FPM
+RUN apt-get update \
+    && apt-get -y --no-install-recommends install php8.0-fpm \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+
+STOPSIGNAL SIGQUIT
+
+# PHP-FPM packages need a nudge to make them docker-friendly
+COPY overrides.conf /etc/php/8.0/fpm/pool.d/z-overrides.conf
+
+CMD ["/usr/sbin/php-fpm8.0", "-O" ]
+
+# Open up fcgi port
+EXPOSE 9000
+
+FROM cli AS swoole
+
+# Install the latest available published swoole release
+RUN apt-get update \
+    && apt-get -y --no-install-recommends install php8.0-swoole \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
