@@ -21,8 +21,7 @@ jobs:
 
           - name: php72
             folder: php/7.2
-            # arch: [linux/amd64, linux/arm64]
-            arch: [linux/amd64]
+            arch: [linux/amd64, linux/arm64]
             targets:
               primary: cli
               secondary: fpm
