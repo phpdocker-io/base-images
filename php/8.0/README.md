@@ -11,7 +11,6 @@ Far smaller in size than PHP's official container. No need to compile any extens
 Swoole version is not configurable. We always provide the latest available via Ondrej's PPA to this version of PHP.
 
 ### Usage
-=====
 
 First, configure your swoole front controller, take note of the port you're starting the server on. For instance:
 
