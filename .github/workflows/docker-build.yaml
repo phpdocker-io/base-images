@@ -1,4 +1,4 @@
-name: ci
+name: build-all-containers
 
 on:
   push:
@@ -21,7 +21,8 @@ jobs:
 
           - name: php72
             folder: php/7.2
-            arch: [linux/amd64, linux/arm64]
+            # arch: [linux/amd64, linux/arm64]
+            arch: [linux/amd64]
             targets:
               primary: cli
               secondary: fpm
@@ -42,26 +43,25 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push ${{ matrix.targets.primary }}
+      - name: Build and push primary container
         uses: docker/build-push-action@v2
         with:
           context: ${{ matrix.folder }}
           platforms: ${{ join(matrix.arch, ',') }}
           push: true
           tags: phpdockerio/${{ matrix.targets.primary && format('{0}-{1}', matrix.name, matrix.targets.primary) || matrix.name }}:latest
-          # tags: phpdockerio/${{ join(matrix.name, matrix.targets.primary, '-') }}:latest
           target: ${{ matrix.target.primary }}
-          # cache-from: type=registry,ref=phpdockerio/${{ matrix.name }}:buildcache
-          # cache-to: type=registry,ref=phpdockerio/${{ matrix.name }}:buildcache,mode=max
+          cache-from: type=registry,ref=phpdockerio/${{ matrix.targets.primary && format('{0}-{1}', matrix.name, matrix.targets.primary) || matrix.name }}:buildcache
+          cache-to: type=registry,ref=phpdockerio/${{ matrix.targets.primary && format('{0}-{1}', matrix.name, matrix.targets.primary) || matrix.name }}:buildcache,mode=max
 
-      - name: Build and push ${{ matrix.targets.secondary }}
+      - name: Build and push secondary container
         if: matrix.targets.secondary
         uses: docker/build-push-action@v2
         with:
           context: ${{ matrix.folder }}
           platforms: ${{ join(matrix.arch, ',') }}
           push: true
-          tags: phpdockerio/${{ matrix.name }}-${{ matrix.targets.secondary }}:latest
+          tags: phpdockerio/${{ format('{0}-{1}', matrix.name, matrix.targets.secondary) }}:latest
           target: ${{ matrix.target.secondary }}
-          # cache-from: type=registry,ref=phpdockerio/${{ matrix.name }}:buildcache
-          # cache-to: type=registry,ref=phpdockerio/${{ matrix.name }}:buildcache,mode=max
+          cache-from: type=registry,ref=phpdockerio/${{ format('{0}-{1}', matrix.name, matrix.targets.secondary) }}:buildcache
+          cache-to: type=registry,ref=phpdockerio/${{ format('{0}-{1}', matrix.name, matrix.targets.secondary) }}:buildcache,mode=max
