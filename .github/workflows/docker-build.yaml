@@ -26,6 +26,13 @@ jobs:
               primary: cli
               secondary: fpm
 
+          - name: php73
+            folder: php/7.3
+            arch: [linux/amd64, linux/arm64]
+            targets:
+              primary: cli
+              secondary: fpm
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
