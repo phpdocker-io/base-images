@@ -55,7 +55,7 @@ jobs:
           # cache-to: type=registry,ref=phpdockerio/${{ matrix.name }}:buildcache,mode=max
 
       - name: Build and push ${{ matrix.targets.secondary }}
-        if: ${{ matrix.targets.secondary != "" }}
+        if: matrix.targets.secondary != ""
         uses: docker/build-push-action@v2
         with:
           context: ${{ matrix.folder }}
