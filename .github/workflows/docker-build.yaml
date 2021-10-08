@@ -44,6 +44,14 @@ jobs:
               secondary: fpm
               tertiary: swoole
 
+          - name: php80
+            folder: php/8.0
+            arch: [linux/amd64, linux/arm64]
+            targets:
+              primary: cli
+              secondary: fpm
+              tertiary: swoole
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
