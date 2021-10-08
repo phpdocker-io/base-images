@@ -4,7 +4,13 @@ on:
   push:
     branches:
       - "master"
-      - "github-action"
+
+  # Allow workflow to be manually run from the GitHub UI
+  workflow_dispatch:
+
+  # Daily build
+  schedule:
+    - cron: "0 2 * * *"
 
 jobs:
   docker:
