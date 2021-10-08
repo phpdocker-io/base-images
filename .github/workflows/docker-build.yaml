@@ -18,6 +18,7 @@ jobs:
             targets:
               primary: ~
               secondary: ~
+              tertiary: ~
 
           - name: php72
             folder: php/7.2
@@ -25,6 +26,7 @@ jobs:
             targets:
               primary: cli
               secondary: fpm
+              tertiary: ~
 
           - name: php73
             folder: php/7.3
@@ -32,6 +34,15 @@ jobs:
             targets:
               primary: cli
               secondary: fpm
+              tertiary: ~
+
+          - name: php74
+            folder: php/7.4
+            arch: [linux/amd64, linux/arm64]
+            targets:
+              primary: cli
+              secondary: fpm
+              tertiary: swoole
 
     steps:
       - name: Checkout
@@ -71,3 +82,15 @@ jobs:
           target: ${{ matrix.targets.secondary }}
           cache-from: type=registry,ref=phpdockerio/${{ format('{0}-{1}', matrix.name, matrix.targets.secondary) }}:buildcache
           cache-to: type=registry,ref=phpdockerio/${{ format('{0}-{1}', matrix.name, matrix.targets.secondary) }}:buildcache,mode=max
+
+      - name: Build and push tertiary container
+        if: matrix.targets.tertiary
+        uses: docker/build-push-action@v2
+        with:
+          context: ${{ matrix.folder }}
+          platforms: ${{ join(matrix.arch, ',') }}
+          push: true
+          tags: phpdockerio/${{ format('{0}-{1}', matrix.name, matrix.targets.tertiary) }}:latest
+          target: ${{ matrix.targets.tertiary }}
+          cache-from: type=registry,ref=phpdockerio/${{ format('{0}-{1}', matrix.name, matrix.targets.tertiary) }}:buildcache
+          cache-to: type=registry,ref=phpdockerio/${{ format('{0}-{1}', matrix.name, matrix.targets.tertiary) }}:buildcache,mode=max
