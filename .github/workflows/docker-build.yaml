@@ -3,48 +3,64 @@ name: ci
 on:
   push:
     branches:
-      - 'master'
-      - 'github-action'
+      - "master"
+      - "github-action"
 
 jobs:
   docker:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-       include:
-         - name: nginx-pagespeed
-           folder: nginx-pagespeed
-           arch: [ linux/amd64 ]
+        include:
+          - name: nginx-pagespeed
+            folder: nginx-pagespeed
+            arch: [linux/amd64]
+            targets:
+              primary: ~
+              secondary: ~
 
-         - name: php72-cli
-           folder: php/7.2/cli
-           arch: [ linux/amd64, linux/arm64 ]
-
-         - name: php72-fpm
-           folder: php/7.2/cli
-           arch: [ linux/amd64, linux/arm64 ]
+          - name: php72
+            folder: php/7.2
+            arch: [linux/amd64, linux/arm64]
+            targets:
+              primary: cli
+              secondary: fpm
 
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v2
-      -
-        name: Set up QEMU
+
+      - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
-      -
-        name: Set up Docker Buildx
+
+      - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
-      -
-        name: Login to DockerHub
+
+      - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build and push
+
+      - name: Build and push ${{ matrix.targets.primary }}
         uses: docker/build-push-action@v2
         with:
           context: ${{ matrix.folder }}
           platforms: ${{ join(matrix.arch, ',') }}
           push: true
-          tags: phpdockerio/${{ matrix.name }}:latest
+          tags: phpdockerio/${{ join([ matrix.name, matrix.targets.primary ], '-') }}:latest
+          target: ${{ matrix.target.primary }}
+          # cache-from: type=registry,ref=phpdockerio/${{ matrix.name }}:buildcache
+          # cache-to: type=registry,ref=phpdockerio/${{ matrix.name }}:buildcache,mode=max
+
+      - name: Build and push ${{ matrix.targets.secondary }}
+        if: ${{ matrix.targets.secondary != "" }}
+        uses: docker/build-push-action@v2
+        with:
+          context: ${{ matrix.folder }}
+          platforms: ${{ join(matrix.arch, ',') }}
+          push: true
+          tags: phpdockerio/${{ matrix.name }}-${{ matrix.targets.secondary }}:latest
+          target: ${{ matrix.target.secondary }}
+          # cache-from: type=registry,ref=phpdockerio/${{ matrix.name }}:buildcache
+          # cache-to: type=registry,ref=phpdockerio/${{ matrix.name }}:buildcache,mode=max
