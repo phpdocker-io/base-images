@@ -48,7 +48,7 @@ jobs:
           context: ${{ matrix.folder }}
           platforms: ${{ join(matrix.arch, ',') }}
           push: true
-          tags: phpdockerio/${{ join([ matrix.name, matrix.targets.primary ], '-') }}:latest
+          tags: phpdockerio/${{ join(matrix.name, matrix.targets.primary, '-') }}:latest
           target: ${{ matrix.target.primary }}
           # cache-from: type=registry,ref=phpdockerio/${{ matrix.name }}:buildcache
           # cache-to: type=registry,ref=phpdockerio/${{ matrix.name }}:buildcache,mode=max
