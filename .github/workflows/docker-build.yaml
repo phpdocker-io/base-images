@@ -80,6 +80,7 @@ jobs:
           context: ${{ matrix.folder }}
           platforms: ${{ join(matrix.arch, ',') }}
           push: true
+          pull: true
           tags: phpdockerio/${{ matrix.targets.primary && format('{0}-{1}', matrix.name, matrix.targets.primary) || matrix.name }}:latest
           target: ${{ matrix.targets.primary }}
           cache-from: type=registry,ref=phpdockerio/${{ matrix.targets.primary && format('{0}-{1}', matrix.name, matrix.targets.primary) || matrix.name }}:buildcache
@@ -92,6 +93,7 @@ jobs:
           context: ${{ matrix.folder }}
           platforms: ${{ join(matrix.arch, ',') }}
           push: true
+          pull: true
           tags: phpdockerio/${{ format('{0}-{1}', matrix.name, matrix.targets.secondary) }}:latest
           target: ${{ matrix.targets.secondary }}
           cache-from: type=registry,ref=phpdockerio/${{ format('{0}-{1}', matrix.name, matrix.targets.secondary) }}:buildcache
@@ -104,6 +106,7 @@ jobs:
           context: ${{ matrix.folder }}
           platforms: ${{ join(matrix.arch, ',') }}
           push: true
+          pull: true
           tags: phpdockerio/${{ format('{0}-{1}', matrix.name, matrix.targets.tertiary) }}:latest
           target: ${{ matrix.targets.tertiary }}
           cache-from: type=registry,ref=phpdockerio/${{ format('{0}-{1}', matrix.name, matrix.targets.tertiary) }}:buildcache
