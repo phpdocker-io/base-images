@@ -116,8 +116,8 @@ jobs:
           pull: true
           tags: phpdockerio/${{ format('{0}:{1}', matrix.targets.primary.repo_name, matrix.targets.primary.tag) }}
           target: ${{ matrix.targets.primary.name }}
-          cache-from: type=registry,ref=phpdockerio/${{ matrix.targets.primary.repo_name }}:buildcache
-          cache-to: type=registry,ref=phpdockerio/${{ matrix.targets.primary.repo_name }}:buildcache,mode=max
+          cache-from: type=registry,ref=phpdockerio/${{ matrix.targets.primary.repo_name }}
+          cache-to: inline
 
       - name: Build and push secondary container
         if: matrix.targets.secondary
@@ -129,8 +129,8 @@ jobs:
           pull: true
           tags: phpdockerio/${{ matrix.targets.secondary.repo_name }}:${{ matrix.targets.secondary.tag }}
           target: ${{ matrix.targets.secondary.name }}
-          cache-from: type=registry,ref=phpdockerio/${{ matrix.targets.secondary.repo_name }}:buildcache
-          cache-to: type=registry,ref=phpdockerio/${{ matrix.targets.secondary.repo_name }}:buildcache,mode=max
+          cache-from: type=registry,ref=phpdockerio/${{ matrix.targets.secondary.repo_name }}
+          cache-to: inline
 
       - name: Build and push tertiary container
         if: matrix.targets.tertiary
@@ -142,5 +142,5 @@ jobs:
           pull: true
           tags: phpdockerio/${{ matrix.targets.tertiary.repo_name }}:${{ matrix.targets.tertiary.tag }}
           target: ${{ matrix.targets.tertiary.name }}
-          cache-from: type=registry,ref=phpdockerio/${{ matrix.targets.tertiary.repo_name }}:buildcache
-          cache-to: type=registry,ref=phpdockerio/${{ matrix.targets.tertiary.repo_name }}:buildcache,mode=max
+          cache-from: type=registry,ref=phpdockerio/${{ matrix.targets.tertiary.repo_name }}
+          cache-to: inline
