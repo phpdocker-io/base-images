@@ -3,7 +3,7 @@ name: build-all-containers
 on:
   push:
     branches:
-      - "master"
+      - "arm32"
 
   # Allow workflow to be manually run from the GitHub UI
   workflow_dispatch:
@@ -18,65 +18,66 @@ jobs:
     strategy:
       matrix:
         include:
-          - name: nginx-pagespeed
-            folder: nginx-pagespeed
-            arch: [linux/amd64]
-            targets:
-              primary:
-                name: ~
-                repo_name: nginx-pagespeed
-                tag: latest
-              secondary: ~
-              tertiary: ~
+          # - name: nginx-pagespeed
+          #   folder: nginx-pagespeed
+          #   arch: [linux/amd64]
+          #   targets:
+          #     primary:
+          #       name: ~
+          #       repo_name: nginx-pagespeed
+          #       tag: latest
+          #     secondary: ~
+          #     tertiary: ~
 
-          - name: php72
-            folder: php/7.2
-            arch: [linux/amd64, linux/arm64]
-            targets:
-              primary:
-                name: cli
-                repo_name: php72-cli
-                tag: latest
-              secondary:
-                name: fpm
-                repo_name: php72-fpm
-                tag: latest
-              tertiary: ~
+          # - name: php72
+          #   folder: php/7.2
+          #   arch: [linux/amd64, linux/arm64]
+          #   targets:
+          #     primary:
+          #       name: cli
+          #       repo_name: php72-cli
+          #       tag: latest
+          #     secondary:
+          #       name: fpm
+          #       repo_name: php72-fpm
+          #       tag: latest
+          #     tertiary: ~
 
-          - name: php73
-            folder: php/7.3
-            arch: [linux/amd64, linux/arm64]
-            targets:
-              primary:
-                name: cli
-                repo_name: php73-cli
-                tag: latest
-              secondary:
-                name: fpm
-                repo_name: php73-fpm
-                tag: latest
-              tertiary: ~
+          # - name: php73
+          #   folder: php/7.3
+          #   arch: [linux/amd64, linux/arm64]
+          #   targets:
+          #     primary:
+          #       name: cli
+          #       repo_name: php73-cli
+          #       tag: latest
+          #     secondary:
+          #       name: fpm
+          #       repo_name: php73-fpm
+          #       tag: latest
+          #     tertiary: ~
 
-          - name: php74
-            folder: php/7.4
-            arch: [linux/amd64, linux/arm64]
-            targets:
-              primary:
-                name: cli
-                repo_name: php74-cli
-                tag: latest
-              secondary:
-                name: fpm
-                repo_name: php74-fpm
-                tag: latest
-              tertiary:
-                name: swoole
-                repo_name: php74-swoole
-                tag: latest
+          # - name: php74
+          #   folder: php/7.4
+          #   arch: [linux/amd64, linux/arm64]
+          #   targets:
+          #     primary:
+          #       name: cli
+          #       repo_name: php74-cli
+          #       tag: latest
+          #     secondary:
+          #       name: fpm
+          #       repo_name: php74-fpm
+          #       tag: latest
+          #     tertiary:
+          #       name: swoole
+          #       repo_name: php74-swoole
+          #       tag: latest
 
           - name: php80
             folder: php/8.0
-            arch: [linux/amd64, linux/arm64]
+            # arch: [linux/amd64, linux/arm64, linux/arm/v7]
+            arch: [linux/arm/v7]
             targets:
               primary:
                 name: cli
