@@ -31,7 +31,7 @@ jobs:
 
           - name: php72
             folder: php/7.2
-            arch: [linux/amd64, linux/arm64]
+            arch: [linux/amd64, linux/arm64, linux/arm/v7]
             targets:
               primary:
                 name: cli
@@ -45,7 +45,7 @@ jobs:
 
           - name: php73
             folder: php/7.3
-            arch: [linux/amd64, linux/arm64]
+            arch: [linux/amd64, linux/arm64, linux/arm/v7]
             targets:
               primary:
                 name: cli
@@ -59,7 +59,7 @@ jobs:
 
           - name: php74
             folder: php/7.4
-            arch: [linux/amd64, linux/arm64]
+            arch: [linux/amd64, linux/arm64, linux/arm/v7]
             targets:
               primary:
                 name: cli
@@ -76,7 +76,7 @@ jobs:
 
           - name: php80
             folder: php/8.0
-            arch: [linux/amd64, linux/arm64]
+            arch: [linux/amd64, linux/arm64, linux/arm/v7]
             targets:
               primary:
                 name: cli
