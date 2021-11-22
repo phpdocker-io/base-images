@@ -99,9 +99,8 @@ COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
 
 | PHP version  | CLI image                    | FPM image                 | Source                         | Supported | Daily builds? |
 | ------------ | ---------------------------- | ------------------------- | ------------------------------ | --------- | ------------- |
-| 8.0 (swoole) | `phpdockerio/php:8.0-swoole` | n/a                       | Ubuntu 20.04 + Ondřej Surý ppa | ✔         | ✔             |
+| 8.1          | `phpdockerio/php:8.1-cli`    | `phpdockerio/php:8.1-fpm` | Ubuntu 20.04 + Ondřej Surý ppa | ✔         | ✔             |
 | 8.0          | `phpdockerio/php:8.0-cli`    | `phpdockerio/php:8.0-fpm` | Ubuntu 20.04 + Ondřej Surý ppa | ✔         | ✔             |
-| 7.4 (swoole) | `phpdockerio/php:7.4-swoole` | n/a                       | Ubuntu 20.04 + Ondřej Surý ppa | ✔         | ✔             |
 | 7.4          | `phpdockerio/php:7.4-cli`    | `phpdockerio/php:7.4-fpm` | Ubuntu 20.04 + Ondřej Surý ppa | ✔         | ✔             |
 | 7.3          | `phpdockerio/php:7.3-cli`    | `phpdockerio/php:7.3-fpm` | Ubuntu 18.04 + Ondřej Surý ppa | ✔         | ✔             |
 | 7.2          | `phpdockerio/php:7.2-cli`    | `phpdockerio/php:7.2-fpm` | Ubuntu 18.04 + Ondřej Surý ppa | ❌        | ✔             |
