@@ -10,7 +10,7 @@ ENV TERM=linux
 # Ensure apt doesn't ask questions when installing stuff
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install Ondrej repos for Ubuntu focal, PHP8.0, composer and selected extensions - better selection than
+# Install Ondrej repos for Ubuntu focal, PHP, composer and selected extensions - better selection than
 # the distro's packages
 RUN apt-get update \
     && apt-get install -y --no-install-recommends gnupg \
