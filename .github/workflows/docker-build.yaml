@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - "master"
-      - "unified-php-repo"
 
   # Allow workflow to be manually run from the GitHub UI
   workflow_dispatch:
@@ -19,20 +18,19 @@ jobs:
     strategy:
       matrix:
         include:
-          # - name: nginx-pagespeed
-          #   folder: nginx-pagespeed
-          #   arch: [linux/amd64]
-          #   targets:
-          #     primary:
-          #       name: ~
-          #       tags: phpdockerio/nginx-pagespeed:latest
-          #     secondary: ~
-          #     tertiary: ~
+          - name: nginx-pagespeed
+            folder: nginx-pagespeed
+            arch: [linux/amd64]
+            targets:
+              primary:
+                name: ~
+                tags: phpdockerio/nginx-pagespeed:latest
+              secondary: ~
+              tertiary: ~
 
           - name: php72
             folder: php/7.2
-            # arch: [linux/amd64, linux/arm64, linux/arm/v7]
-            arch: [linux/amd64]
+            arch: [linux/amd64, linux/arm64, linux/arm/v7]
             targets:
               primary:
                 name: cli
@@ -44,45 +42,45 @@ jobs:
                 tag: latest
               tertiary: ~
 
-          # - name: php73
-          #   folder: php/7.3
-          #   arch: [linux/amd64, linux/arm64, linux/arm/v7]
-          #   targets:
-          #     primary:
-          #       name: cli
-          #       tags: phpdockerio/php:7.3-cli,phpdockerio/php73-cli:latest
-          #     secondary:
-          #       name: fpm
-          #       tags: phpdockerio/php:7.3-fpm,phpdockerio/php73-fpm:latest
-          #     tertiary: ~
+          - name: php73
+            folder: php/7.3
+            arch: [linux/amd64, linux/arm64, linux/arm/v7]
+            targets:
+              primary:
+                name: cli
+                tags: phpdockerio/php:7.3-cli,phpdockerio/php73-cli:latest
+              secondary:
+                name: fpm
+                tags: phpdockerio/php:7.3-fpm,phpdockerio/php73-fpm:latest
+              tertiary: ~
 
-          # - name: php74
-          #   folder: php/7.4
-          #   arch: [linux/amd64, linux/arm64, linux/arm/v7]
-          #   targets:
-          #     primary:
-          #       name: cli
-          #       tags: phpdockerio/php:7.4-cli,phpdockerio/php74-cli:latest
-          #     secondary:
-          #       name: fpm
-          #       tags: phpdockerio/php:7.4-fpm,phpdockerio/php74-fpm:latest
-          #     tertiary:
-          #       name: swoole
-          #       tags: phpdockerio/php:7.4-swoole,phpdockerio/php74-swoole:latest
+          - name: php74
+            folder: php/7.4
+            arch: [linux/amd64, linux/arm64, linux/arm/v7]
+            targets:
+              primary:
+                name: cli
+                tags: phpdockerio/php:7.4-cli,phpdockerio/php74-cli:latest
+              secondary:
+                name: fpm
+                tags: phpdockerio/php:7.4-fpm,phpdockerio/php74-fpm:latest
+              tertiary:
+                name: swoole
+                tags: phpdockerio/php:7.4-swoole,phpdockerio/php74-swoole:latest
 
-          # - name: php80
-          #   folder: php/8.0
-          #   arch: [linux/amd64, linux/arm64, linux/arm/v7]
-          #   targets:
-          #     primary:
-          #       name: cli
-          #       tags: phpdockerio/php:8.0-cli,phpdockerio/php80-cli:latest
-          #     secondary:
-          #       name: fpm
-          #       tags: phpdockerio/php:8.0-fpm,phpdockerio/php80-fpm:latest
-          #     tertiary:
-          #       name: swoole
-          #       tags: phpdockerio/php:8.0-swoole,phpdockerio/php80-swoole:latest
+          - name: php80
+            folder: php/8.0
+            arch: [linux/amd64, linux/arm64, linux/arm/v7]
+            targets:
+              primary:
+                name: cli
+                tags: phpdockerio/php:8.0-cli,phpdockerio/php80-cli:latest
+              secondary:
+                name: fpm
+                tags: phpdockerio/php:8.0-fpm,phpdockerio/php80-fpm:latest
+              tertiary:
+                name: swoole
+                tags: phpdockerio/php:8.0-swoole,phpdockerio/php80-swoole:latest
 
     steps:
       - name: Checkout
