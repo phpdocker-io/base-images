@@ -24,8 +24,7 @@ jobs:
             targets:
               primary:
                 name: ~
-                repo_name: nginx-pagespeed
-                tag: latest
+                tags: phpdockerio/nginx-pagespeed:latest
               secondary: ~
               tertiary: ~
 
@@ -35,10 +34,10 @@ jobs:
             targets:
               primary:
                 name: cli
-                repo_name: php72-cli
-                tag: latest
+                tags: phpdockerio/php:7.2-cli,phpdockerio/php72-cli:latest
               secondary:
                 name: fpm
+                tags: phpdockerio/php:7.2-fpm,phpdockerio/php72-fpm:latest
                 repo_name: php72-fpm
                 tag: latest
               tertiary: ~
@@ -49,12 +48,10 @@ jobs:
             targets:
               primary:
                 name: cli
-                repo_name: php73-cli
-                tag: latest
+                tags: phpdockerio/php:7.3-cli,phpdockerio/php73-cli:latest
               secondary:
                 name: fpm
-                repo_name: php73-fpm
-                tag: latest
+                tags: phpdockerio/php:7.3-fpm,phpdockerio/php73-fpm:latest
               tertiary: ~
 
           - name: php74
@@ -63,16 +60,13 @@ jobs:
             targets:
               primary:
                 name: cli
-                repo_name: php74-cli
-                tag: latest
+                tags: phpdockerio/php:7.4-cli,phpdockerio/php74-cli:latest
               secondary:
                 name: fpm
-                repo_name: php74-fpm
-                tag: latest
+                tags: phpdockerio/php:7.4-fpm,phpdockerio/php74-fpm:latest
               tertiary:
                 name: swoole
-                repo_name: php74-swoole
-                tag: latest
+                tags: phpdockerio/php:7.4-swoole,phpdockerio/php74-swoole:latest
 
           - name: php80
             folder: php/8.0
@@ -80,16 +74,13 @@ jobs:
             targets:
               primary:
                 name: cli
-                repo_name: php80-cli
-                tag: latest
+                tags: phpdockerio/php:8.0-cli,phpdockerio/php80-cli:latest
               secondary:
                 name: fpm
-                repo_name: php80-fpm
-                tag: latest
+                tags: phpdockerio/php:8.0-fpm,phpdockerio/php80-fpm:latest
               tertiary:
                 name: swoole
-                repo_name: php80-swoole
-                tag: latest
+                tags: phpdockerio/php:8.0-swoole,phpdockerio/php80-swoole:latest
 
     steps:
       - name: Checkout
@@ -114,7 +105,7 @@ jobs:
           platforms: ${{ join(matrix.arch, ',') }}
           push: true
           pull: true
-          tags: phpdockerio/${{ format('{0}:{1}', matrix.targets.primary.repo_name, matrix.targets.primary.tag) }}
+          tags: ${{ matrix.targets.primary.tags }}
           target: ${{ matrix.targets.primary.name }}
 
       - name: Build and push secondary container
@@ -125,7 +116,7 @@ jobs:
           platforms: ${{ join(matrix.arch, ',') }}
           push: true
           pull: true
-          tags: phpdockerio/${{ matrix.targets.secondary.repo_name }}:${{ matrix.targets.secondary.tag }}
+          tags: ${{ matrix.targets.secondary.tags }}
           target: ${{ matrix.targets.secondary.name }}
 
       - name: Build and push tertiary container
@@ -136,5 +127,5 @@ jobs:
           platforms: ${{ join(matrix.arch, ',') }}
           push: true
           pull: true
-          tags: phpdockerio/${{ matrix.targets.tertiary.repo_name }}:${{ matrix.targets.tertiary.tag }}
+          tags: ${{ matrix.targets.tertiary.tags }}
           target: ${{ matrix.targets.tertiary.name }}
