@@ -66,10 +66,8 @@ is part of core PHP in php 8+:
   * cURL
   * JSON (from 8.0, part of php core)
   * MBString
-  * MCrypt (php <= 7.0)
   * OPCache
   * ReadLine
-  * Sodium (from 7.1; from 7.2, part of php core)
   * XML
   * ZIP
 
