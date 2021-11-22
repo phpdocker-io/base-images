@@ -30,6 +30,11 @@ Example:
 | `phpdockerio/php71-cli:latest`    | `phpdockerio/php71-cli:latest` |
 
 ``
+### Supported architectures
+* `linux/amd64`
+* `linux/arm64`
+* `linux/arm/v7`
+
 ### OS Base images & PHP Package Sources
 
 All images use an Ubuntu LTS release as base image, except for PHP5.6 which uses Debian Jessie. For each of these
