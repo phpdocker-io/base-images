@@ -26,7 +26,6 @@ Example:
 | --------------------------------- | ------------------------------ |
 | n/a                               | `phpdockerio/php:8.1-fpm`      |
 | `phpdockerio/php80-cli:latest`    | `phpdockerio/php:8.0-cli`      |
-| `phpdockerio/php74-swoole:latest` | `phpdockerio/php:7.4-swoole`   |
 | `phpdockerio/php71-cli:latest`    | `phpdockerio/php71-cli:latest` |
 
 ``
@@ -55,7 +54,7 @@ We're using `CMD` instead of `ENTRYPOINT` because I don't want to dictate how yo
 `ENTRYPOINT` you would not be able to easily open a bash shell into either container using `docker run` or `docker exec` or
 docker-compose equivalent without you needing to re-build the container.
 
-We also offer a `swoole` variant on some images. We'll be phasing these out, as the images were created before we
+We also used to offer a `swoole` variant on some images. We are phasing these out, as the images were created before we
 could reliably install the extension via `apt` and we had to compile it from source. It is now available as an
 `apt` package and all you need to do is install it.
 
