@@ -38,17 +38,6 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 CMD ["php", "-a"]
 
-#############
-## WORKAROUND
-##  * https://github.com/phpdocker-io/base-images/issues/44
-##  * https://github.com/oerdnj/deb.sury.org/issues/1682
-#############
-RUN apt update \
-    && apt-get install -y libidn2-0 libpcre2-8-0 libpcre3 libzstd1 \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* ~/.composer
-### End of workaround
-
 # If you'd like to be able to use this container on a docker-compose environment as a quiescent PHP CLI container
 # you can /bin/bash into, override CMD with the following - bear in mind that this will make docker-compose stop
 # slow on such a container, docker-compose kill might do if you're in a hurry
