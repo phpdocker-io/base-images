@@ -9,6 +9,28 @@ Images are [built daily](https://ci.auronconsulting.co.uk/teams/main/pipelines/p
 More info on its own [readme](nginx-pagespeed/README.md)
 
 ## PHP
+
+### Note: changes to PHP image locations at docker hub
+
+As of end of Nov 2021, container images for php version **7.2 onwards** are pushed into the same docker hub repository, 
+and we'll be conveying the specific versions via tags. Instead of having different container repositories, one per 
+version variant, with always the `latest` tag.
+
+In order to avoid breaking existing setups, we'll continue pushing the same build to the old locations, in addition to 
+the new one. We'll do this until they go EOL and we stop building them at all.
+
+Starting with php 8.1, we'll only publish to the new location
+
+Example:
+
+| Before                            | Now                            |
+| --------------------------------- | ------------------------------ |
+| n/a                               | `phpdockerio/php:8.1-fpm`      |
+| `phpdockerio/php80-cli:latest`    | `phpdockerio/php:8.0-cli`      |
+| `phpdockerio/php74-swoole:latest` | `phpdockerio/php:7.4-swoole`   |
+| `phpdockerio/php71-cli:latest`    | `phpdockerio/php71-cli:latest` |
+
+``
 ### OS Base images & PHP Package Sources
 
 All images use an Ubuntu LTS release as base image, except for PHP5.6 which uses Debian Jessie. For each of these
@@ -67,14 +89,14 @@ COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
 * Also, old images could potentially be deleted by Docker Hub if they go unused for a certain period of time - if this happens, they won't be restored and you need to upgrade.
 * Ondřej Surý is PHP's package maintainer in Debian. His Ubuntu PPA allows us to have more up to date packages beyond those provided by the base image OS.
 
-| PHP version  | CLI image                  | FPM image               | Source                         | Supported | Daily builds? |
-| ------------ | -------------------------- | ----------------------- | ------------------------------ | --------- | ------------- |
-| 8.0 (swoole) | `phpdockerio/php80-swoole` | n/a                     | Ubuntu 20.04 + Ondřej Surý ppa | ✔         | ✔             |
-| 8.0          | `phpdockerio/php80-cli`    | `phpdockerio/php80-fpm` | Ubuntu 20.04 + Ondřej Surý ppa | ✔         | ✔             |
-| 7.4 (swoole) | `phpdockerio/php74-swoole` | n/a                     | Ubuntu 20.04 + Ondřej Surý ppa | ✔         | ✔             |
-| 7.4          | `phpdockerio/php74-cli`    | `phpdockerio/php74-fpm` | Ubuntu 20.04 + Ondřej Surý ppa | ✔         | ✔             |
-| 7.3          | `phpdockerio/php73-cli`    | `phpdockerio/php73-fpm` | Ubuntu 18.04 + Ondřej Surý ppa | ✔         | ✔             |
-| 7.2          | `phpdockerio/php72-cli`    | `phpdockerio/php72-fpm` | Ubuntu 18.04 + Ondřej Surý ppa | ❌        | ✔             |
-| 7.1          | `phpdockerio/php71-cli`    | `phpdockerio/php71-fpm` | Ubuntu 16.04 + Ondřej Surý ppa | ❌        | ❌            |
-| 7.0          | `phpdockerio/php70-cli`    | `phpdockerio/php70-fpm` | Ubuntu 16.04                   | ❌        | ❌            |
-| 5.6          | `phpdockerio/php56-cli`    | `phpdockerio/php56-fpm` | Debian Jessie                  | ❌        | ❌            |
+| PHP version  | CLI image                    | FPM image                 | Source                         | Supported | Daily builds? |
+| ------------ | ---------------------------- | ------------------------- | ------------------------------ | --------- | ------------- |
+| 8.0 (swoole) | `phpdockerio/php:8.0-swoole` | n/a                       | Ubuntu 20.04 + Ondřej Surý ppa | ✔         | ✔             |
+| 8.0          | `phpdockerio/php:8.0-cli`    | `phpdockerio/php:8.0-fpm` | Ubuntu 20.04 + Ondřej Surý ppa | ✔         | ✔             |
+| 7.4 (swoole) | `phpdockerio/php:7.4-swoole` | n/a                       | Ubuntu 20.04 + Ondřej Surý ppa | ✔         | ✔             |
+| 7.4          | `phpdockerio/php:7.4-cli`    | `phpdockerio/php:7.4-fpm` | Ubuntu 20.04 + Ondřej Surý ppa | ✔         | ✔             |
+| 7.3          | `phpdockerio/php:7.3-cli`    | `phpdockerio/php:7.3-fpm` | Ubuntu 18.04 + Ondřej Surý ppa | ✔         | ✔             |
+| 7.2          | `phpdockerio/php:7.2-cli`    | `phpdockerio/php:7.2-fpm` | Ubuntu 18.04 + Ondřej Surý ppa | ❌        | ✔             |
+| 7.1          | `phpdockerio/php71-cli`      | `phpdockerio/php71-fpm`   | Ubuntu 16.04 + Ondřej Surý ppa | ❌        | ❌            |
+| 7.0          | `phpdockerio/php70-cli`      | `phpdockerio/php70-fpm`   | Ubuntu 16.04                   | ❌        | ❌            |
+| 5.6          | `phpdockerio/php56-cli`      | `phpdockerio/php56-fpm`   | Debian Jessie                  | ❌        | ❌            |
