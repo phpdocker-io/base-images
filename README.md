@@ -1,9 +1,8 @@
 # PHPDocker.io base images
 
-
 Repository of base images for [PHPDocker.io](http://phpdocker.io) generated environments.
 
-Images are [built daily](https://ci.auronconsulting.co.uk/teams/main/pipelines/phpdocker-base-images) in order to fetch the latest base image changes as well as available php versions.
+Images are [built daily](https://github.com/phpdocker-io/base-images/actions/workflows/docker-build.yaml) in order to fetch the latest base image changes as well as available php versions.
 
 ## NGINX with PageSpeed
 More info on its own [readme](nginx-pagespeed/README.md)
@@ -19,7 +18,7 @@ version variant, with always the `latest` tag.
 In order to avoid breaking existing setups, we'll continue pushing the same build to the old locations, in addition to 
 the new one. We'll do this until they go EOL and we stop building them at all.
 
-Starting with php 8.1, we'll only publish to the new location
+Starting with php 8.1, we'll only publish to the new location.
 
 Example:
 
@@ -44,12 +43,16 @@ of php 7.4 every time. Ubuntu backport security fixes, but not necessarily bugfi
 
 ### Image types
 
-Each PHP version has its own image, and for each php version, we have a `cli` and an `fpm` variant. These two are identical,
+For each minor PHP version (`MAJOR.MINOR`) we have a `cli` and an `fpm` variant. These two are identical,
 except for the fact the `fpm` contains `php-fpm` and their default command is of course `php-fpm`.
 
 We're using `CMD` instead of `ENTRYPOINT` because I don't want to dictate how you use these images. If I were to set an
 `ENTRYPOINT` you would not be able to easily open a bash shell into either container using `docker run` or `docker exec` or
 docker-compose equivalent without you needing to re-build the container.
+
+We also offer a `swoole` variant on some images. We'll be phasing these out, as the images were created before we
+could reliably install the extension via `apt` and we had to compile it from source. It is now available as an
+`apt` package and all you need to do is install it.
 
 ### Built-in php extensions
 
