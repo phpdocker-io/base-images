@@ -82,6 +82,18 @@ jobs:
                 name: swoole
                 tags: phpdockerio/php:8.0-swoole,phpdockerio/php80-swoole:latest
 
+          - name: php81
+            folder: php/8.1
+            arch: [linux/amd64, linux/arm64, linux/arm/v7]
+            targets:
+              primary:
+                name: cli
+                tags: phpdockerio/php:8.1-cli,phpdockerio/php81-cli:latest
+              secondary:
+                name: fpm
+                tags: phpdockerio/php:8.1-fpm,phpdockerio/php81-fpm:latest
+              tertiary: ~
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
