@@ -88,10 +88,10 @@ jobs:
             targets:
               primary:
                 name: cli
-                tags: phpdockerio/php:8.1-cli,phpdockerio/php81-cli:latest
+                tags: phpdockerio/php:8.1-cli
               secondary:
                 name: fpm
-                tags: phpdockerio/php:8.1-fpm,phpdockerio/php81-fpm:latest
+                tags: phpdockerio/php:8.1-fpm
               tertiary: ~
 
     steps:
