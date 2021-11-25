@@ -66,7 +66,7 @@ jobs:
                 tags: phpdockerio/php:7.4-fpm,phpdockerio/php74-fpm:latest
               tertiary:
                 name: swoole
-                tags: phpdockerio/php:7.4-swoole,phpdockerio/php74-swoole:latest
+                tags: phpdockerio/php74-swoole:latest
 
           - name: php80
             folder: php/8.0
@@ -80,7 +80,7 @@ jobs:
                 tags: phpdockerio/php:8.0-fpm,phpdockerio/php80-fpm:latest
               tertiary:
                 name: swoole
-                tags: phpdockerio/php:8.0-swoole,phpdockerio/php80-swoole:latest
+                tags: phpdockerio/php80-swoole:latest
 
           - name: php81
             folder: php/8.1
