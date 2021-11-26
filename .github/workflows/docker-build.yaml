@@ -34,10 +34,10 @@ jobs:
             targets:
               primary:
                 name: cli
-                tags: phpdockerio/php:7.2-cli,phpdockerio/php72-cli:latest
+                tags: phpdockerio/php72-cli:latest
               secondary:
                 name: fpm
-                tags: phpdockerio/php:7.2-fpm,phpdockerio/php72-fpm:latest
+                tags: phpdockerio/php72-fpm:latest
                 repo_name: php72-fpm
                 tag: latest
               tertiary: ~
@@ -48,10 +48,10 @@ jobs:
             targets:
               primary:
                 name: cli
-                tags: phpdockerio/php:7.3-cli,phpdockerio/php73-cli:latest
+                tags: phpdockerio/php73-cli:latest
               secondary:
                 name: fpm
-                tags: phpdockerio/php:7.3-fpm,phpdockerio/php73-fpm:latest
+                tags: phpdockerio/php73-fpm:latest
               tertiary: ~
 
           - name: php74
@@ -98,7 +98,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set up QEMU
+      - name: Set up QEMU (required for arm build)
         uses: docker/setup-qemu-action@v1
 
       - name: Set up Docker Buildx
