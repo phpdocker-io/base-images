@@ -60,16 +60,14 @@ could reliably install the extension via `apt` and we had to compile it from sou
 
 ### Built-in php extensions
 
-Each image contain the extensions below. Some versions of PHP have the same functionality in core - for instance, `json`
-is part of core PHP in php 8+:
-  * APCu & APCu-bc
-  * cURL
-  * JSON (from 8.0, part of php core)
-  * MBString
-  * OPCache
-  * ReadLine
-  * XML
-  * ZIP
+  * apcu & apcu-bc
+  * curl
+  * json (from 8.0, part of php core)
+  * mbstring
+  * opcache
+  * readline
+  * xml
+  * zip
 
 These are the minimum extensions I consider necessary for any modern PHP app. They're required by the likes of `composer`,
 the `symfony/*` libraries etc.
