@@ -37,5 +37,5 @@ $http->start();
 Second, run the container:
 
 ```bash
-docker run --rm -t -p 8101:8101 -v $(pwd):/app phpdockerio/php74-swoole php /app/index.php
+docker run --rm -t -p 8101:8101 -v $(pwd):/app phpdockerio/php80-swoole php /app/index.php
 ```

@@ -2,7 +2,7 @@
 # PHPDocker.io PHP 8.1 / CLI and FPM image #
 ############################################
 
-FROM ubuntu:focal AS cli
+FROM ubuntu:jammy AS cli
 
 # Fixes some weird terminal issues such as broken clear / CTRL+L
 ENV TERM=linux
