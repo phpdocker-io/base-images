@@ -19,7 +19,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 ARG NGINX_PAGESPEED_VERSION=latest-stable
 
 # Options: latest (nginx mainline) or a version number from here: http://nginx.org/download/
-ARG NGINX_VERSION=latest
+# Note: looks like nginx 1.22 is the last version compatible with ngx_pagespeed and there haven't been commits to the pagespeed repository for over 2 years
+ARG NGINX_VERSION=1.22.0
 
 COPY install-pagespeed.sh /tmp/install-pagespeed.sh
 
