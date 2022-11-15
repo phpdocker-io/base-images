@@ -23,7 +23,6 @@ RUN apt-get update \
         ca-certificates \
         curl \
         unzip \
-        php8.2-apcu \
         php8.2-cli \
         php8.2-curl \
         php8.2-mbstring \
