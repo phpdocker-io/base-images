@@ -116,7 +116,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push primary container
+      - name: Primary container
         uses: docker/build-push-action@v3
         with:
           context: ${{ matrix.folder }}
@@ -126,7 +126,7 @@ jobs:
           tags: ${{ matrix.targets.primary.tags }}
           target: ${{ matrix.targets.primary.name }}
 
-      - name: Build and push secondary container
+      - name: Secondary container
         if: matrix.targets.secondary
         uses: docker/build-push-action@v3
         with:
@@ -137,7 +137,7 @@ jobs:
           tags: ${{ matrix.targets.secondary.tags }}
           target: ${{ matrix.targets.secondary.name }}
 
-      - name: Build and push tertiary container
+      - name: Tertiary container
         if: matrix.targets.tertiary
         uses: docker/build-push-action@v3
         with:
