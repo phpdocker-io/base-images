@@ -98,6 +98,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Debug
+        run: | 
+          echo "is_master: -> ${{ github.ref == 'refs/heads/master' }} <-"
+          echo "ref: ${{ github.head_ref }}"
+
       - name: Set up QEMU (required for arm build)
         uses: docker/setup-qemu-action@v2
 
