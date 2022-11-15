@@ -1,9 +1,15 @@
 name: build-all-containers
 
 on:
+  # Run when committing to master
   push:
     branches:
-      - "master"
+      - master
+
+  # Run on pull requests to master
+  pull_request:
+    branches:
+      - master
 
   # Allow workflow to be manually run from the GitHub UI
   workflow_dispatch:
@@ -20,7 +26,7 @@ jobs:
         include:
           - name: nginx-pagespeed
             folder: nginx-pagespeed
-            arch: [linux/amd64]
+            arch: [ linux/amd64 ]
             targets:
               primary:
                 name: ~
@@ -30,7 +36,7 @@ jobs:
 
           - name: php72
             folder: php/7.2
-            arch: [linux/amd64, linux/arm64, linux/arm/v7]
+            arch: [ linux/amd64, linux/arm64, linux/arm/v7 ]
             targets:
               primary:
                 name: cli
@@ -44,7 +50,7 @@ jobs:
 
           - name: php73
             folder: php/7.3
-            arch: [linux/amd64, linux/arm64, linux/arm/v7]
+            arch: [ linux/amd64, linux/arm64, linux/arm/v7 ]
             targets:
               primary:
                 name: cli
@@ -56,7 +62,7 @@ jobs:
 
           - name: php74
             folder: php/7.4
-            arch: [linux/amd64, linux/arm64, linux/arm/v7]
+            arch: [ linux/amd64, linux/arm64, linux/arm/v7 ]
             targets:
               primary:
                 name: cli
@@ -70,7 +76,7 @@ jobs:
 
           - name: php80
             folder: php/8.0
-            arch: [linux/amd64, linux/arm64, linux/arm/v7]
+            arch: [ linux/amd64, linux/arm64, linux/arm/v7 ]
             targets:
               primary:
                 name: cli
@@ -84,7 +90,7 @@ jobs:
 
           - name: php81
             folder: php/8.1
-            arch: [linux/amd64, linux/arm64, linux/arm/v7]
+            arch: [ linux/amd64, linux/arm64, linux/arm/v7 ]
             targets:
               primary:
                 name: cli
@@ -115,7 +121,7 @@ jobs:
         with:
           context: ${{ matrix.folder }}
           platforms: ${{ join(matrix.arch, ',') }}
-          push: true
+          push: ${{ github.ref == 'refs/heads/master' }}
           pull: true
           tags: ${{ matrix.targets.primary.tags }}
           target: ${{ matrix.targets.primary.name }}
@@ -126,7 +132,7 @@ jobs:
         with:
           context: ${{ matrix.folder }}
           platforms: ${{ join(matrix.arch, ',') }}
-          push: true
+          push: ${{ github.ref == 'refs/heads/master' }}
           pull: true
           tags: ${{ matrix.targets.secondary.tags }}
           target: ${{ matrix.targets.secondary.name }}
@@ -137,7 +143,7 @@ jobs:
         with:
           context: ${{ matrix.folder }}
           platforms: ${{ join(matrix.arch, ',') }}
-          push: true
+          push: ${{ github.ref == 'refs/heads/master' }}
           pull: true
           tags: ${{ matrix.targets.tertiary.tags }}
           target: ${{ matrix.targets.tertiary.name }}
