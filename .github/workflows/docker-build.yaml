@@ -1,15 +1,9 @@
 name: build-all-containers
 
 on:
-  # Run when committing to master
-  push:
-    branches:
-      - master
-
-  # Run on pull requests to master
   pull_request:
-    branches:
-      - master
+  push:
+    branches: [ master ]
 
   # Allow workflow to be manually run from the GitHub UI
   workflow_dispatch:
@@ -102,7 +96,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up QEMU (required for arm build)
         uses: docker/setup-qemu-action@v2
