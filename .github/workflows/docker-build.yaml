@@ -94,6 +94,18 @@ jobs:
                 tags: phpdockerio/php:8.1-fpm
               tertiary: ~
 
+          - name: php82
+            folder: php/8.2
+            arch: [linux/amd64, linux/arm64, linux/arm/v7]
+            targets:
+              primary:
+                name: cli
+                tags: phpdockerio/php:8.2-cli
+              secondary:
+                name: fpm
+                tags: phpdockerio/php:8.2-fpm
+              tertiary: ~
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
