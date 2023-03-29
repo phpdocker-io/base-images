@@ -5,10 +5,6 @@ Repository of base images for [PHPDocker.io](http://phpdocker.io) generated envi
 Images are [built daily](https://github.com/phpdocker-io/base-images/actions/workflows/docker-build.yaml) in order to
 fetch the latest base image changes as well as available php versions.
 
-## NGINX with PageSpeed
-
-More info on its own [readme](nginx-pagespeed/README.md)
-
 ## PHP
 
 ### Supported architectures
