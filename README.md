@@ -106,7 +106,7 @@ COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
 | 8.2          | `phpdockerio/php:8.2-cli`    | `phpdockerio/php:8.2-fpm` | Ubuntu 22.04 + Ondřej Surý ppa | ✔         | ✔             |
 | 8.1          | `phpdockerio/php:8.1-cli`    | `phpdockerio/php:8.1-fpm` | Ubuntu 22.04 + Ondřej Surý ppa | ✔         | ✔             |
 | 8.0          | `phpdockerio/php:8.0-cli`    | `phpdockerio/php:8.0-fpm` | Ubuntu 20.04 + Ondřej Surý ppa | ✔         | ✔             |
-| 7.4          | `phpdockerio/php:7.4-cli`    | `phpdockerio/php:7.4-fpm` | Ubuntu 20.04 + Ondřej Surý ppa | ✔         | ✔             |
+| 7.4          | `phpdockerio/php:7.4-cli`    | `phpdockerio/php:7.4-fpm` | Ubuntu 20.04 + Ondřej Surý ppa | ❌         | ✔             |
 | 7.3          | `phpdockerio/php73-cli`      | `phpdockerio/php73-cli`   | Ubuntu 18.04 + Ondřej Surý ppa | ❌         | ✔             |
 | 7.2          | `phpdockerio/php72-cli`      | `phpdockerio/php72-cli`   | Ubuntu 18.04 + Ondřej Surý ppa | ❌         | ✔             |
 | 7.1          | `phpdockerio/php71-cli`      | `phpdockerio/php71-fpm`   | Ubuntu 16.04 + Ondřej Surý ppa | ❌         | ❌            |
