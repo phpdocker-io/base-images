@@ -18,16 +18,6 @@ jobs:
     strategy:
       matrix:
         include:
-          - name: nginx-pagespeed
-            folder: nginx-pagespeed
-            arch: [ linux/amd64 ]
-            targets:
-              primary:
-                name: ~
-                tags: phpdockerio/nginx-pagespeed:latest
-              secondary: ~
-              tertiary: ~
-
           - name: php72
             folder: php/7.2
             arch: [ linux/amd64, linux/arm64, linux/arm/v7 ]
