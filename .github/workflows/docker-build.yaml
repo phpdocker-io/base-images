@@ -18,32 +18,6 @@ jobs:
     strategy:
       matrix:
         include:
-          - name: php72
-            folder: php/7.2
-            arch: [ linux/amd64, linux/arm64, linux/arm/v7 ]
-            targets:
-              primary:
-                name: cli
-                tags: phpdockerio/php72-cli:latest
-              secondary:
-                name: fpm
-                tags: phpdockerio/php72-fpm:latest
-                repo_name: php72-fpm
-                tag: latest
-              tertiary: ~
-
-          - name: php73
-            folder: php/7.3
-            arch: [ linux/amd64, linux/arm64, linux/arm/v7 ]
-            targets:
-              primary:
-                name: cli
-                tags: phpdockerio/php73-cli:latest
-              secondary:
-                name: fpm
-                tags: phpdockerio/php73-fpm:latest
-              tertiary: ~
-
           - name: php74
             folder: php/7.4
             arch: [ linux/amd64, linux/arm64, linux/arm/v7 ]

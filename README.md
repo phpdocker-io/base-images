@@ -69,8 +69,8 @@ COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
 | 8.1              | `phpdockerio/php:8.1-cli` <br> `phpdockerio/php:8.1-fpm` | Ubuntu 22.04  | ✔ 25 Nov 2024 | ✔            |
 | 8.0              | `phpdockerio/php:8.0-cli` <br> `phpdockerio/php:8.0-fpm` | Ubuntu 20.04  | ✔ 26 Nov 2023 | ✔            |
 | 7.4              | `phpdockerio/php:7.4-cli` <br> `phpdockerio/php:7.4-fpm` | Ubuntu 20.04  | ❌ 28 Nov 2022 | ✔            |
-| 7.3              | `phpdockerio/php73-cli`   <br> `phpdockerio/php73-cli`   | Ubuntu 18.04  | ❌ 06 Dec 2021 | ✔            |
-| 7.2              | `phpdockerio/php72-cli`   <br> `phpdockerio/php72-cli`   | Ubuntu 18.04  | ❌ 30 Nov 2020 | ✔            |
+| 7.3              | `phpdockerio/php73-cli`   <br> `phpdockerio/php73-cli`   | Ubuntu 18.04  | ❌ 06 Dec 2021 | ❌            |
+| 7.2              | `phpdockerio/php72-cli`   <br> `phpdockerio/php72-cli`   | Ubuntu 18.04  | ❌ 30 Nov 2020 | ❌            |
 | 7.1              | `phpdockerio/php71-cli`   <br> `phpdockerio/php71-fpm`   | Ubuntu 16.04  | ❌ 01 Dec 2019 | ❌            |
 | 7.0              | `phpdockerio/php70-cli`   <br> `phpdockerio/php70-fpm`   | Ubuntu 16.04  | ❌ 10 Jan 2019 | ❌            |
 | 5.6              | `phpdockerio/php56-cli`   <br> `phpdockerio/php56-fpm`   | Debian Jessie | ❌ 31 Dec 2018 | ❌            |
