@@ -65,9 +65,10 @@ COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
 
 | PHP <br> version | Images                                                   | OS base       | PHP EOL date  | Daily builds |
 |------------------|----------------------------------------------------------|---------------|---------------|--------------|
+| 8.3              | `phpdockerio/php:8.3-cli` <br> `phpdockerio/php:8.3-fpm` | Ubuntu 22.04  | ✔ 23 Nov 2026 | ✔            |
 | 8.2              | `phpdockerio/php:8.2-cli` <br> `phpdockerio/php:8.2-fpm` | Ubuntu 22.04  | ✔ 08 Dec 2025 | ✔            |
 | 8.1              | `phpdockerio/php:8.1-cli` <br> `phpdockerio/php:8.1-fpm` | Ubuntu 22.04  | ✔ 25 Nov 2024 | ✔            |
-| 8.0              | `phpdockerio/php:8.0-cli` <br> `phpdockerio/php:8.0-fpm` | Ubuntu 20.04  | ✔ 26 Nov 2023 | ✔            |
+| 8.0              | `phpdockerio/php:8.0-cli` <br> `phpdockerio/php:8.0-fpm` | Ubuntu 20.04  | ❌ 26 Nov 2023 | ✔            |
 | 7.4              | `phpdockerio/php:7.4-cli` <br> `phpdockerio/php:7.4-fpm` | Ubuntu 20.04  | ❌ 28 Nov 2022 | ✔            |
 | 7.3              | `phpdockerio/php73-cli`   <br> `phpdockerio/php73-cli`   | Ubuntu 18.04  | ❌ 06 Dec 2021 | ❌            |
 | 7.2              | `phpdockerio/php72-cli`   <br> `phpdockerio/php72-cli`   | Ubuntu 18.04  | ❌ 30 Nov 2020 | ❌            |
@@ -77,9 +78,9 @@ COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
 
 * Versions past EOL (end of life) are unsupported, but may still get daily builds to ensure the underlying OS packages
   are up to date.
-* Daily builds are turned off for versions that run on an OS base that's also EOL (for instance, Debian Jessie).
+* Daily builds are turned off for versions that run on an OS base that's also EOL (for instance, Ubuntu 18.04).
 * Daily builds are kept for PHP versions that have reached EOL but the base OS has not - the base OS still receives
-  security updates, including the PHP runtime.
+  security updates.
 * In general, do not use any unsupported images in a production environment, regardless of whether daily builds are
   still enabled. I continue to build these for absolute holdouts that haven't been able to upgrade on time.
 * Old images are kept in docker hub in the interest of enabling legacy apps to run. Docker does delete images that
