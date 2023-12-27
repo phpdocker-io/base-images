@@ -70,7 +70,7 @@ jobs:
                 tags: phpdockerio/php:8.2-fpm
               tertiary: ~
 
-          - name: php82
+          - name: php83
             folder: php/8.3
             arch: [ linux/amd64, linux/arm64, linux/arm/v7 ]
             targets:
