@@ -65,10 +65,10 @@ COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
 
 | PHP <br> version | Images                                                   | OS base       | PHP EOL date  | Daily builds |
 |------------------|----------------------------------------------------------|---------------|---------------|--------------|
-| 8.4              | `phpdockerio/php:8.4-cli` <br> `phpdockerio/php:8.4-fpm` | Ubuntu 24.04  | ✔ 31 Nov 2026 | ✔            |
-| 8.3              | `phpdockerio/php:8.3-cli` <br> `phpdockerio/php:8.3-fpm` | Ubuntu 22.04  | ✔ 31 Nov 2026 | ✔            |
-| 8.2              | `phpdockerio/php:8.2-cli` <br> `phpdockerio/php:8.2-fpm` | Ubuntu 22.04  | ✔ 31 Dec 2025 | ✔            |
-| 8.1              | `phpdockerio/php:8.1-cli` <br> `phpdockerio/php:8.1-fpm` | Ubuntu 22.04  | ✔ 31 Dec 2024 | ✔            |
+| 8.4              | `phpdockerio/php:8.4-cli` <br> `phpdockerio/php:8.4-fpm` | Ubuntu 24.04  | ✔ 31 Nov 2028 | ✔            |
+| 8.3              | `phpdockerio/php:8.3-cli` <br> `phpdockerio/php:8.3-fpm` | Ubuntu 22.04  | ✔ 31 Nov 2027 | ✔            |
+| 8.2              | `phpdockerio/php:8.2-cli` <br> `phpdockerio/php:8.2-fpm` | Ubuntu 22.04  | ✔ 31 Dec 2026 | ✔            |
+| 8.1              | `phpdockerio/php:8.1-cli` <br> `phpdockerio/php:8.1-fpm` | Ubuntu 22.04  | ✔ 31 Dec 2025 | ✔            |
 | 8.0              | `phpdockerio/php:8.0-cli` <br> `phpdockerio/php:8.0-fpm` | Ubuntu 20.04  | ❌ 26 Nov 2023 | ✔            |
 | 7.4              | `phpdockerio/php:7.4-cli` <br> `phpdockerio/php:7.4-fpm` | Ubuntu 20.04  | ❌ 28 Nov 2022 | ✔            |
 | 7.3              | `phpdockerio/php73-cli`   <br> `phpdockerio/php73-cli`   | Ubuntu 18.04  | ❌ 06 Dec 2021 | ❌            |
