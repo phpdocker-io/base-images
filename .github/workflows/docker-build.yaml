@@ -82,6 +82,18 @@ jobs:
                 tags: phpdockerio/php:8.3-fpm
               tertiary: ~
 
+          - name: php84
+            folder: php/8.4
+            arch: [ linux/amd64, linux/arm64, linux/arm/v7 ]
+            targets:
+              primary:
+                name: cli
+                tags: phpdockerio/php:8.4-cli
+              secondary:
+                name: fpm
+                tags: phpdockerio/php:8.4-fpm
+              tertiary: ~
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -105,7 +117,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Primary container
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ${{ matrix.folder }}
           platforms: ${{ join(matrix.arch, ',') }}
@@ -116,7 +128,7 @@ jobs:
 
       - name: Secondary container
         if: matrix.targets.secondary
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ${{ matrix.folder }}
           platforms: ${{ join(matrix.arch, ',') }}
@@ -127,7 +139,7 @@ jobs:
 
       - name: Tertiary container
         if: matrix.targets.tertiary
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ${{ matrix.folder }}
           platforms: ${{ join(matrix.arch, ',') }}
