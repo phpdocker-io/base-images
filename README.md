@@ -56,7 +56,7 @@ COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
 
 | PHP <br> version | Images                                                   | OS base       | PHP EOL date  | Daily builds  |
 |------------------|----------------------------------------------------------|---------------|---------------|---------------|
-| 8.5|             | `phpdockerio/php:8.5-cli` <br> `phpdockerio/php:8.5-fpm` | Ubuntu 24.04  | ✔ 31 Dec 2029 | ✔            |
+| 8.5              | `phpdockerio/php:8.5-cli` <br> `phpdockerio/php:8.5-fpm` | Ubuntu 24.04  | ✔ 31 Dec 2029 | ✔            |
 | 8.4              | `phpdockerio/php:8.4-cli` <br> `phpdockerio/php:8.4-fpm` | Ubuntu 24.04  | ✔ 31 Dec 2028 | ✔             |
 | 8.3              | `phpdockerio/php:8.3-cli` <br> `phpdockerio/php:8.3-fpm` | Ubuntu 22.04  | ✔ 31 Dec 2027 | ✔             |
 | 8.2              | `phpdockerio/php:8.2-cli` <br> `phpdockerio/php:8.2-fpm` | Ubuntu 22.04  | ✔ 31 Dec 2026 | ✔             |
