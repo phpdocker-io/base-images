@@ -18,6 +18,13 @@ jobs:
     strategy:
       matrix:
         php: [ '8.1', '8.2', '8.3', '8.4', '8.5' ]
+        include:
+          # Ubuntu base image per PHP version
+          - { php: '8.1', ubuntu: 'jammy' }
+          - { php: '8.2', ubuntu: 'jammy' }
+          - { php: '8.3', ubuntu: 'jammy' }
+          - { php: '8.4', ubuntu: 'noble' }
+          - { php: '8.5', ubuntu: 'noble' }
 
     steps:
       - name: Checkout
@@ -44,7 +51,10 @@ jobs:
       - name: PHP CLI container
         uses: docker/build-push-action@v6
         with:
-          context: php/${{ matrix.php }}
+          context: .
+          build-args: |
+            PHP_VERSION=${{ matrix.php }}
+            UBUNTU=${{ matrix.ubuntu }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: ${{ github.ref == 'refs/heads/master' }}
           pull: true
@@ -54,14 +64,17 @@ jobs:
           tags: phpdockerio/php:${{ matrix.php }}-cli
           target: cli
 
+      # FPM is built on top of the CLI stage, so it reuses its layers from the cache above
       - name: PHP FPM container
         uses: docker/build-push-action@v6
         with:
-          context: php/${{ matrix.php }}
+          context: .
+          build-args: |
+            PHP_VERSION=${{ matrix.php }}
+            UBUNTU=${{ matrix.ubuntu }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: ${{ github.ref == 'refs/heads/master' }}
           pull: true
-          # Enable BuildKit cache restore/save across workflow runs
           cache-from: type=gha,scope=php-${{ matrix.php }}
           cache-to: type=gha,mode=max,scope=php-${{ matrix.php }}
           tags: phpdockerio/php:${{ matrix.php }}-fpm
