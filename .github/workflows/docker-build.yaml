@@ -18,6 +18,14 @@ jobs:
     strategy:
       matrix:
         php: [ '8.1', '8.2', '8.3', '8.4', '8.5' ]
+        target: [ 'cli', 'fpm' ]
+        include:
+          # Ubuntu base image per PHP version
+          - { php: '8.1', ubuntu: 'jammy' }
+          - { php: '8.2', ubuntu: 'jammy' }
+          - { php: '8.3', ubuntu: 'jammy' }
+          - { php: '8.4', ubuntu: 'noble' }
+          - { php: '8.5', ubuntu: 'noble' }
 
     steps:
       - name: Checkout
@@ -41,28 +49,18 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: PHP CLI container
+      - name: PHP ${{ matrix.php }} ${{ matrix.target }} container
         uses: docker/build-push-action@v6
         with:
-          context: php/${{ matrix.php }}
+          context: .
+          build-args: |
+            PHP_VERSION=${{ matrix.php }}
+            UBUNTU=${{ matrix.ubuntu }}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: ${{ github.ref == 'refs/heads/master' }}
           pull: true
           # Enable BuildKit cache restore/save across workflow runs
-          cache-from: type=gha,scope=php-${{ matrix.php }}
-          cache-to: type=gha,mode=max,scope=php-${{ matrix.php }}
-          tags: phpdockerio/php:${{ matrix.php }}-cli
-          target: cli
-
-      - name: PHP FPM container
-        uses: docker/build-push-action@v6
-        with:
-          context: php/${{ matrix.php }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
-          push: ${{ github.ref == 'refs/heads/master' }}
-          pull: true
-          # Enable BuildKit cache restore/save across workflow runs
-          cache-from: type=gha,scope=php-${{ matrix.php }}
-          cache-to: type=gha,mode=max,scope=php-${{ matrix.php }}
-          tags: phpdockerio/php:${{ matrix.php }}-fpm
-          target: fpm
+          cache-from: type=gha,scope=php-${{ matrix.php }}-${{ matrix.target }}
+          cache-to: type=gha,mode=max,scope=php-${{ matrix.php }}-${{ matrix.target }}
+          tags: phpdockerio/php:${{ matrix.php }}-${{ matrix.target }}
+          target: ${{ matrix.target }}
