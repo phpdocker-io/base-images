@@ -3,7 +3,7 @@
 # Build with --build-arg PHP_VERSION=8.x  #
 ##########################################
 
-# Ubuntu release the image is based on, also used to pick the Ondrej PPA suite
+# Ubuntu release the image is based on, also used as the deb.sury.org suite
 ARG UBUNTU=noble
 
 ### CLI ###
@@ -19,21 +19,21 @@ ENV TERM=linux
 # Ensure apt doesn't ask questions when installing stuff
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install Ondrej repos for Ubuntu, PHP, composer and selected extensions - better selection than
-# the distro's packages
+# Install PHP from the deb.sury.org repository (Ondřej Surý's packages, which replaced the
+# retired ondrej/php PPA), plus composer and selected extensions - better selection than the
+# distro's packages
 #
 # From PHP 8.5 opcache is built into the PHP runtime and there is no separate package for it.
 RUN test -n "${PHP_VERSION}" || { echo "PHP_VERSION build arg is required" >&2; exit 1; } \
     && OPCACHE="" \
     && if dpkg --compare-versions "${PHP_VERSION}" lt 8.5; then OPCACHE="php${PHP_VERSION}-opcache"; fi \
     && apt-get update \
-    && apt-get install -y --no-install-recommends gnupg \
-    && echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu ${UBUNTU} main" > /etc/apt/sources.list.d/ondrej-php.list \
-    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C \
+    && apt-get install -y --no-install-recommends ca-certificates curl \
+    && curl -fsSLo /tmp/debsuryorg-archive-keyring.deb https://packages.sury.org/debsuryorg-archive-keyring.deb \
+    && dpkg -i /tmp/debsuryorg-archive-keyring.deb \
+    && echo "deb [signed-by=/usr/share/keyrings/debsuryorg-archive-keyring.gpg] https://packages.sury.org/php/ ${UBUNTU} main" > /etc/apt/sources.list.d/php.list \
     && apt-get update \
     && apt-get -y --no-install-recommends install \
-        ca-certificates \
-        curl \
         unzip \
         php${PHP_VERSION}-apcu \
         php${PHP_VERSION}-cli \
